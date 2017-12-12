@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { TftHeaderModule } from './modules/tft-header/tft-header.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    TftHeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
