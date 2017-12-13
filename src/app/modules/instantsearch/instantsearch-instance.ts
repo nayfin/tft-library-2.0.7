@@ -1,9 +1,9 @@
-import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
-import { isPlatformBrowser } from "@angular/common";
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
-import instantsearch from "instantsearch.js/es";
+import instantsearch from 'instantsearch.js/es';
 
-import { Widget } from "../base-widget";
+import { Widget } from '../base-widget';
 
 export type InstantSearchConfig = {
   appId: string;
@@ -57,10 +57,12 @@ export class NgAisInstance {
 
   public init(config: InstantSearchConfig) {
     // add default searchParameters with highlighting config
-    if (!config.searchParameters) config.searchParameters = {};
+    if (!config.searchParameters) {
+      config.searchParameters = {};
+    }
     Object.assign(config.searchParameters, {
-      highlightPreTag: "__ais-highlight__",
-      highlightPostTag: "__/ais-highlight__"
+      highlightPreTag: '__ais-highlight__',
+      highlightPostTag: '__/ais-highlight__'
     });
 
     // remove URLSync widget if on SSR
@@ -72,7 +74,7 @@ export class NgAisInstance {
     if (!config.createAlgoliaClient) {
       config.createAlgoliaClient = (algoliasearch, appId, apiKey) => {
         const client = algoliasearch(appId, apiKey);
-        client.addAlgoliaAgent(`angular-instantsearch ${process.env.VERSION}`);
+        client.addAlgoliaAgent(`angular-instantsearch `); // ${process.env.VERSION}
         return client;
       };
     }

@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+
+  searchConfig = {
+
+    appId: 'K3CROWK8OK',
+    apiKey: '6939af36b945c8a8e94c95984b4b9ce6',
+    indexName: 'ingredients',
+    urlSync: true
+  };
 }

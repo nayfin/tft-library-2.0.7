@@ -6,12 +6,12 @@ import {
   OnDestroy,
   Output,
   EventEmitter
-} from "@angular/core";
+} from '@angular/core';
 
-import { NgAisInstance, InstantSearchConfig } from "./instantsearch-instance";
+import { NgAisInstance, InstantSearchConfig } from './instantsearch-instance';
 
 @Component({
-  selector: "ng-ais-instantsearch",
+  selector: 'ng-ais-instantsearch',
   template: `<ng-content></ng-content>`
 })
 export class NgAisInstantSearch implements AfterViewInit, OnInit, OnDestroy {
@@ -27,7 +27,7 @@ export class NgAisInstantSearch implements AfterViewInit, OnInit, OnDestroy {
 
   public ngOnInit() {
     this.searchInstance.init(this.config);
-    this.searchInstance.on("render", this.onInstantSearchRender);
+    this.searchInstance.on('render', this.onInstantSearchRender);
   }
 
   public ngAfterViewInit() {
@@ -35,7 +35,7 @@ export class NgAisInstantSearch implements AfterViewInit, OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.searchInstance.off("render", this.onInstantSearchRender);
+    this.searchInstance.off('render', this.onInstantSearchRender);
   }
 
   onInstantSearchRender = () => {
@@ -43,5 +43,5 @@ export class NgAisInstantSearch implements AfterViewInit, OnInit, OnDestroy {
     const state = this.searchInstance.getState();
 
     this.change.emit({ results, state });
-  };
+  }
 }
