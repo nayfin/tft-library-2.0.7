@@ -1,12 +1,12 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { NgAisHighlight } from "./highlight";
+import { TftHighlightComponent } from './highlight.component';
 
 @NgModule({
-  declarations: [NgAisHighlight],
-  entryComponents: [NgAisHighlight],
-  exports: [NgAisHighlight],
+  declarations: [TftHighlightComponent],
+  entryComponents: [TftHighlightComponent],
+  exports: [TftHighlightComponent],
   imports: [CommonModule]
 })
-export class NgAisHighlightModule {}
+export class TftHighlightModule {}

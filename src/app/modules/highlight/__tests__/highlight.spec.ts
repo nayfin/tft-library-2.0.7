@@ -1,14 +1,14 @@
 import { Component } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 
-import { NgAisHighlightModule } from "../highlight.module";
+import { TftHighlightModule } from "../highlight.module";
 
 const render = ({ hit, attributeName, tagName = "em" }) => {
   @Component({
     selector: "test-component",
     template: `
-      <ng-ais-highlight [attributeName]="attributeName" [hit]="hit">
-      </ng-ais-highlight>
+      <tft-highlight [attributeName]="attributeName" [hit]="hit">
+      </tft-highlight>
     `
   })
   class TestComponent {
@@ -19,7 +19,7 @@ const render = ({ hit, attributeName, tagName = "em" }) => {
 
   TestBed.configureTestingModule({
     declarations: [TestComponent],
-    imports: [NgAisHighlightModule]
+    imports: [TftHighlightModule]
   });
 
   const fixture = TestBed.createComponent(TestComponent);

@@ -27,8 +27,8 @@ import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instanc
               [class]="cx('item')"
               *ngFor="let hit of state.hits"
             >
-              <ng-ais-highlight attributeName="name" [hit]="hit">
-              </ng-ais-highlight>
+              <tft-highlight attributeName="name" [hit]="hit">
+              </tft-highlight>
             </li>
           </ul>
         </div>

@@ -1,26 +1,26 @@
-import { Component, Input } from "@angular/core";
-import { isPlainObject, escape, get } from "lodash-es";
-import { bem } from "../utils";
+import { Component, Input } from '@angular/core';
+import { isPlainObject, escape, get } from 'lodash-es';
+import { bem } from '../utils';
 
 @Component({
-  selector: "ng-ais-highlight",
+  selector: 'tft-highlight',
   template: `<span [innerHtml]="content"></span>`
 })
-export class NgAisHighlight {
+export class TftHighlightComponent {
   @Input() attributeName: string;
   @Input() hit: { _highlightResult?: {}; label?: string; highlighted?: string };
-  @Input() tagName: string = "em";
+  @Input() tagName: string = 'em';
 
-  cx = bem("Highlight")();
+  cx = bem('Highlight')();
 
   get content() {
-    if (this.attributeName === "highlighted") {
+    if (this.attributeName === 'highlighted') {
       return this.hit.highlighted
         ? this.replaceWithTagName(this.hit.highlighted)
         : this.hit.label;
     }
 
-    if (this.hit.hasOwnProperty("_highlightResult")) {
+    if (this.hit.hasOwnProperty('_highlightResult')) {
       const attributeHighlighted = get(
         this.hit._highlightResult,
         this.attributeName
@@ -29,7 +29,7 @@ export class NgAisHighlight {
       // check that the attributeHighlighted is a string
       if (
         isPlainObject(attributeHighlighted) &&
-        typeof attributeHighlighted.value === "string"
+        typeof attributeHighlighted.value === 'string'
       ) {
         return this.replaceWithTagName(attributeHighlighted.value);
       }
@@ -43,7 +43,7 @@ export class NgAisHighlight {
         }] into hit object, will display an empty string.`
       );
 
-      return "";
+      return '';
     }
 
     return fallback;
@@ -51,7 +51,7 @@ export class NgAisHighlight {
 
   replaceWithTagName(value: string) {
     return value
-      .replace(new RegExp("<em>", "g"), `<${this.tagName} class="${this.cx}">`)
-      .replace(new RegExp("</em>", "g"), `</${this.tagName}>`);
+      .replace(new RegExp('<em>', 'g'), `<${this.tagName} class="${this.cx}">`)
+      .replace(new RegExp('</em>', 'g'), `</${this.tagName}>`);
   }
 }

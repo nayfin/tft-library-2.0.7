@@ -5,19 +5,17 @@ import {
   EventEmitter,
   Inject,
   PLATFORM_ID
-} from "@angular/core";
-import { connectSearchBox } from "instantsearch.js/es/connectors";
-import { noop } from "lodash-es";
+} from '@angular/core';
+import { connectSearchBox } from 'instantsearch.js/es/connectors';
+import { noop } from 'lodash-es';
 
-import { BaseWidget } from "../base-widget";
-import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
+import { BaseWidget } from '../base-widget';
+import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 
 @Component({
-  selector: "ng-ais-search-box",
+  selector: 'tft-search-box',
   template: `
     <div [class]="cx()">
-      <ng-ais-header [header]="header" [className]="cx('header')"></ng-ais-header>
-
       <div [class]="cx('body')">
         <form
           [class]="cx('form')"
@@ -72,15 +70,13 @@ import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instanc
           </button>
         </form>
       </div>
-
-      <ng-ais-footer [footer]="footer" [class]="cx('footer')"></ng-ais-footer>
     </div>
   `
 })
-export class NgAisSearchBox extends BaseWidget {
-  @Input() public placeholder: string = "Search";
-  @Input() public submitTitle: string = "Submit";
-  @Input() public resetTitle: string = "Reset";
+export class TftSearchBox extends BaseWidget {
+  @Input() public placeholder: string = 'Search';
+  @Input() public submitTitle: string = 'Submit';
+  @Input() public resetTitle: string = 'Reset';
   @Input() public searchAsYouType: boolean = true;
 
   // Output events
@@ -94,7 +90,7 @@ export class NgAisSearchBox extends BaseWidget {
   @Output() blur = new EventEmitter();
 
   public state = {
-    query: "",
+    query: '',
     refine: noop
   };
 
@@ -102,7 +98,7 @@ export class NgAisSearchBox extends BaseWidget {
     @Inject(PLATFORM_ID) public platformId: Object,
     searchInstance: TftInstantSearchInstance
   ) {
-    super(searchInstance, "SearchBox");
+    super(searchInstance, 'SearchBox');
     this.createWidget(connectSearchBox);
   }
 
@@ -130,6 +126,6 @@ export class NgAisSearchBox extends BaseWidget {
     this.reset.emit(event);
 
     // reset search
-    this.state.refine("");
+    this.state.refine('');
   }
 }

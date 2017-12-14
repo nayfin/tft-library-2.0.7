@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { NgAisHighlightModule } from '../highlight/highlight.module';
+import { TftHighlightModule } from '../highlight/highlight.module';
 import { TftResultsComponent } from './results.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { TftResultsComponent } from './results.component';
   exports: [TftResultsComponent],
   imports: [
     CommonModule,
-    NgAisHighlightModule
+    TftHighlightModule
   ]
 })
 export class TftResultsModule {}

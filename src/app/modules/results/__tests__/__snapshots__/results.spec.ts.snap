@@ -53,7 +53,7 @@ exports[`Hits renders markup with state 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -61,7 +61,7 @@ exports[`Hits renders markup with state 1`] = `
               <span>
                 foo
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>
@@ -70,7 +70,7 @@ exports[`Hits renders markup with state 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -78,7 +78,7 @@ exports[`Hits renders markup with state 1`] = `
               <span>
                 bar
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>
@@ -87,7 +87,7 @@ exports[`Hits renders markup with state 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -95,7 +95,7 @@ exports[`Hits renders markup with state 1`] = `
               <span>
                 foobar
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>
@@ -104,7 +104,7 @@ exports[`Hits renders markup with state 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -112,7 +112,7 @@ exports[`Hits renders markup with state 1`] = `
               <span>
                 barfoo
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>
@@ -274,7 +274,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -282,7 +282,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
               <span>
                 transformed - foo
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>
@@ -291,7 +291,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -299,7 +299,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
               <span>
                 transformed - bar
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>
@@ -308,7 +308,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -316,7 +316,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
               <span>
                 transformed - foobar
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>
@@ -325,7 +325,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
           >
             
                 
-            <ng-ais-highlight
+            <tft-highlight
               attributename="name"
               ng-reflect-attribute-name="name"
               ng-reflect-hit="[object Object]"
@@ -333,7 +333,7 @@ exports[`Hits should apply \`transformItems\` if specified 1`] = `
               <span>
                 transformed - barfoo
               </span>
-            </ng-ais-highlight>
+            </tft-highlight>
             
               
           </li>

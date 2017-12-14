@@ -57,11 +57,11 @@ export type RefinementListState = {
                 value="{{item.value}}"
                 [checked]="item.isRefined"
               />
-              <ng-ais-highlight
+              <tft-highlight
                 attributeName="highlighted"
                 [hit]="item"
               >
-              </ng-ais-highlight>
+              </tft-highlight>
               <span [class]="cx('count')">
                 {{item.count}}
               </span>
