@@ -3,7 +3,7 @@ import { connectHierarchicalMenu } from "instantsearch.js/es/connectors";
 import { noop, isFunction } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 import { bem, parseNumberInput } from "../utils";
 
 export type HierarchicalMenuState = {
@@ -60,7 +60,7 @@ export class NgAisHierarchicalMenu extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
     super(searchInstance, "HierarchicalMenu");
   }

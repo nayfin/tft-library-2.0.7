@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TftHeaderModule } from './modules/tft-header/tft-header.module';
-import { NgAisModule } from './modules/index';
+import { TftSearchModule } from './modules/index';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import { NgAisModule } from './modules/index';
   imports: [
     BrowserModule,
     TftHeaderModule,
-    NgAisModule.forRoot(),
+    TftSearchModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { connectHitsPerPage } from "instantsearch.js/es/connectors";
 import { noop } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 
 export type ResultsPerPageState = {
   items: {}[];
@@ -51,7 +51,7 @@ export class NgAisResultsPerPage extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
     super(searchInstance, "ResultsPerPage");
   }

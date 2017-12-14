@@ -3,7 +3,7 @@ import { connectBreadcrumb } from "instantsearch.js/es/connectors";
 import { noop } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 
 export type BreadcrumbState = {
   createURL: Function;
@@ -70,7 +70,7 @@ export class NgAisBreadcrumb extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
     super(searchInstance, "Breadcrumb");
   }

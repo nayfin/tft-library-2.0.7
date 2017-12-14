@@ -1,8 +1,8 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 // Modules
-import { NgAisResultsModule } from './results/results.module';
-import { NgAisInstantSearchModule } from './instantsearch/instantsearch.module';
+import { TftResultsModule } from './results/results.module';
+import { TftInstantSearchModule } from './instantsearch/instantsearch.module';
 
 // import { NgAisInfiniteResultsModule } from './infinite-results/infinite-results.module';
 // import { NgAisBreadcrumbModule } from './breadcrumb/breadcrumb.module';
@@ -33,9 +33,9 @@ import { NgAisInstantSearchModule } from './instantsearch/instantsearch.module';
 // import { parseServerRequest } from './parse-server-request';
 // export { parseServerRequest };
 
-const NGIS_MODULES = [
-  NgAisInstantSearchModule,
-  NgAisResultsModule,
+const TFT_SEARCH_MODULES = [
+  TftInstantSearchModule,
+  TftResultsModule,
   // NgAisSearchBoxModule,
   // NgAisClearRefinementsModule,
   // NgAisMenuModule,
@@ -58,14 +58,14 @@ const NGIS_MODULES = [
 ];
 
 @NgModule({
-  exports: NGIS_MODULES,
-  imports: [NgAisInstantSearchModule.forRoot()]
+  exports: TFT_SEARCH_MODULES,
+  imports: [TftInstantSearchModule.forRoot()]
 })
-export class NgAisRootModule {}
+export class TftSearchRootModule {}
 
-@NgModule({ imports: NGIS_MODULES, exports: NGIS_MODULES })
-export class NgAisModule {
+@NgModule({ imports: TFT_SEARCH_MODULES, exports: TFT_SEARCH_MODULES })
+export class TftSearchModule {
   public static forRoot(): ModuleWithProviders {
-    return { ngModule: NgAisRootModule };
+    return { ngModule: TftSearchRootModule };
   }
 }

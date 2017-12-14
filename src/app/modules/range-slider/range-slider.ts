@@ -10,7 +10,7 @@ import { isPlainObject, noop, omit } from "lodash-es";
 import * as noUiSlider from "nouislider";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 import { parseNumberInput } from "../utils";
 
 export type RangeSliderState = {
@@ -61,7 +61,7 @@ export class NgAisRangeSlider extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
     super(searchInstance, "RangeSlider");
   }

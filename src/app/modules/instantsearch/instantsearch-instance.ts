@@ -5,6 +5,7 @@ import instantsearch from 'instantsearch.js/es';
 
 import { Widget } from '../base-widget';
 
+// TODO: check if changing type to interface breaks anything
 export type InstantSearchConfig = {
   appId: string;
   apiKey: string;
@@ -49,7 +50,7 @@ export class InstantSearchInstance {
 }
 
 @Injectable()
-export class NgAisInstance {
+export class TftInstantSearchInstance {
   private instance?: InstantSearchInstance;
   private didSSR: boolean;
 

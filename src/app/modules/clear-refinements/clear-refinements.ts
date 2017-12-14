@@ -1,12 +1,12 @@
-import { Component, Input, Inject, PLATFORM_ID } from "@angular/core";
-import { connectClearAll } from "instantsearch.js/es/connectors";
-import { noop } from "lodash-es";
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { connectClearAll } from 'instantsearch.js/es/connectors';
+import { noop } from 'lodash-es';
 
-import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { BaseWidget } from '../base-widget';
+import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 
 @Component({
-  selector: "ng-ais-clear-refinements",
+  selector: 'ng-ais-clear-refinements',
   template: `
     <div [class]="cx()">
       <ng-ais-header [header]="header" [className]="cx('header')"></ng-ais-header>
@@ -26,7 +26,7 @@ import { NgAisInstance } from "../instantsearch/instantsearch-instance";
   `
 })
 export class NgAisClearRefinements extends BaseWidget {
-  @Input() public buttonLabel: string = "Clear refinements";
+  @Input() public buttonLabel: string = 'Clear refinements';
   @Input() public clearsQuery: boolean = false;
   @Input() public excludeAttributes: string[] = [];
 
@@ -34,9 +34,9 @@ export class NgAisClearRefinements extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
-    super(searchInstance, "ClearRefinements");
+    super(searchInstance, 'ClearRefinements');
   }
 
   public ngOnInit() {

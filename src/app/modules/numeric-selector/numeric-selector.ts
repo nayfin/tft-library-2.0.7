@@ -3,7 +3,7 @@ import { connectNumericSelector } from "instantsearch.js/es/connectors";
 import { noop } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 
 export type NumericSelectorState = {
   currentRefinement?: string;
@@ -40,7 +40,7 @@ export type NumericSelectorState = {
 export class NgAisNumericSelector extends BaseWidget {
   // connector options
   @Input() public attributeName: string;
-  @Input() public operator: "<" | "<=" | "=" | ">=" | ">" | "!=" = "=";
+  @Input() public operator: '<' | '<=' | '=' | '>=' | '>' | '!=' = '=';
   @Input()
   public options: {
     value: number;
@@ -55,9 +55,9 @@ export class NgAisNumericSelector extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
-    super(searchInstance, "NumericSelector");
+    super(searchInstance, 'NumericSelector');
   }
 
   public ngOnInit() {

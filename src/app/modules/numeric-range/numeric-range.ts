@@ -3,7 +3,7 @@ import { connectRange } from "instantsearch.js/es/connectors";
 import { noop } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 import { parseNumberInput } from "../utils";
 
 export type NumericRangeState = {
@@ -93,7 +93,7 @@ export class NgAisNumericRange extends BaseWidget {
     start: [0, 0]
   };
 
-  constructor(searchInstance: NgAisInstance) {
+  constructor(searchInstance: TftInstantSearchInstance) {
     super(searchInstance, "RangeSlider");
   }
 

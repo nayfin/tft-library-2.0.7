@@ -3,7 +3,7 @@ import { connectCurrentRefinedValues } from "instantsearch.js/es/connectors";
 import { noop, isFunction } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 
 export type CurrentRefinementsState = {
   attributes: {};
@@ -85,7 +85,7 @@ export class NgAisCurrentRefinements extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
     super(searchInstance, "CurrentRefinements");
   }

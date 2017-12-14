@@ -3,7 +3,7 @@ import { connectPagination } from "instantsearch.js/es/connectors";
 import { noop, range } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 import { parseNumberInput } from "../utils";
 
 @Component({
@@ -163,7 +163,7 @@ export class NgAisPagination extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
     super(searchInstance, "Pagination");
   }

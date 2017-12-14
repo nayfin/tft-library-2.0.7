@@ -3,7 +3,7 @@ import { connectStarRating } from "instantsearch.js/es/connectors";
 import { noop } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
 
 export type RatingMenuState = {
   createURL: Function;
@@ -98,7 +98,7 @@ export class NgAisRatingMenu extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
     super(searchInstance, "RatingMenu");
   }

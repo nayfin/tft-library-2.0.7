@@ -8,13 +8,13 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { NgAisInstance, InstantSearchConfig } from './instantsearch-instance';
+import { TftInstantSearchInstance, InstantSearchConfig } from './instantsearch-instance';
 
 @Component({
-  selector: 'ng-ais-instantsearch',
+  selector: 'tft-instantsearch',
   template: `<ng-content></ng-content>`
 })
-export class NgAisInstantSearch implements AfterViewInit, OnInit, OnDestroy {
+export class TftInstantSearchComponent implements AfterViewInit, OnInit, OnDestroy {
   @Input() public config: InstantSearchConfig;
 
   @Output()
@@ -23,7 +23,7 @@ export class NgAisInstantSearch implements AfterViewInit, OnInit, OnDestroy {
     state: {};
   }>();
 
-  constructor(private searchInstance: NgAisInstance) {}
+  constructor(private searchInstance: TftInstantSearchInstance) {}
 
   public ngOnInit() {
     this.searchInstance.init(this.config);

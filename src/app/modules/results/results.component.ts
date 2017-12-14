@@ -5,20 +5,18 @@ import {
   ContentChild,
   TemplateRef,
   PLATFORM_ID
-} from "@angular/core";
+} from '@angular/core';
 
-import { connectHits } from "instantsearch.js/es/connectors";
-import { isFunction } from "lodash-es";
+import { connectHits } from 'instantsearch.js/es/connectors';
+import { isFunction } from 'lodash-es';
 
-import { BaseWidget } from "../base-widget";
-import { NgAisInstance } from "../instantsearch/instantsearch-instance";
+import { BaseWidget } from '../base-widget';
+import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 
 @Component({
-  selector: "ng-ais-results",
+  selector: 'tft-results',
   template: `
     <div [class]="cx()">
-      <ng-ais-header [header]="header" [className]="cx('header')"></ng-ais-header>
-
       <div [class]="cx('body')">
         <ng-container *ngTemplateOutlet="template; context: state"></ng-container>
 
@@ -35,12 +33,10 @@ import { NgAisInstance } from "../instantsearch/instantsearch-instance";
           </ul>
         </div>
       </div>
-
-      <ng-ais-footer [footer]="footer" [className]="cx('footer')"></ng-ais-footer>
     </div>
   `
 })
-export class NgAisResults extends BaseWidget {
+export class TftResultsComponent extends BaseWidget {
   @ContentChild(TemplateRef) public template?: TemplateRef<any>;
 
   // render options
@@ -51,9 +47,9 @@ export class NgAisResults extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public plateformId: Object,
-    searchInstance: NgAisInstance
+    searchInstance: TftInstantSearchInstance
   ) {
-    super(searchInstance, "Results");
+    super(searchInstance, 'Results');
     this.createWidget(connectHits, { escapeHits: true });
   }
 
@@ -61,7 +57,7 @@ export class NgAisResults extends BaseWidget {
     state: { hits: {}[]; results: {} },
     isFirstRendering: boolean
   ) => {
-    if (isFirstRendering) return;
+    if (isFirstRendering) { return; }
 
     this.state = {
       ...state,
@@ -70,5 +66,5 @@ export class NgAisResults extends BaseWidget {
         ? this.transformItems(state.hits)
         : state.hits
     };
-  };
+  }
 }

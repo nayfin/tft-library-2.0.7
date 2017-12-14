@@ -1,7 +1,7 @@
 import { Input, OnDestroy, OnInit } from '@angular/core';
 import { noop } from 'lodash-es';
 import { Widget, Connector } from '../base-widget';
-import { NgAisInstance } from '../instantsearch/instantsearch-instance';
+import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 import { bem } from '../utils';
 
 export class BaseWidget implements OnInit, OnDestroy {
@@ -13,7 +13,7 @@ export class BaseWidget implements OnInit, OnDestroy {
   public state?: object;
   public cx?: Function;
 
-  constructor(private searchInstance: NgAisInstance, widgetName: string) {
+  constructor(private searchInstance: TftInstantSearchInstance, widgetName: string) {
     this.cx = bem(widgetName);
   }
 
@@ -31,5 +31,5 @@ export class BaseWidget implements OnInit, OnDestroy {
 
   public updateState = (state, isFirstRendering): Promise<void> | void => {
     this.state = state;
-  };
+  }
 }

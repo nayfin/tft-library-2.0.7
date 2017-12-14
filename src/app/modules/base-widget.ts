@@ -2,7 +2,7 @@ import { Input, OnDestroy, OnInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { noop } from 'lodash-es';
 
-import { NgAisInstance } from './instantsearch/instantsearch-instance';
+import { TftInstantSearchInstance } from './instantsearch/instantsearch-instance';
 import { bem } from './utils';
 
 export class Widget {
@@ -42,7 +42,7 @@ export class BaseWidget implements OnInit, OnDestroy {
   public state?: object;
   public cx?: Function;
 
-  constructor(private searchInstance: NgAisInstance, widgetName: string) {
+  constructor(private searchInstance: TftInstantSearchInstance, widgetName: string) {
     this.cx = bem(widgetName);
   }
 

@@ -4,7 +4,7 @@ exports[`InfiniteHits renders markup with state 1`] = `
 <ng-ais-infinite-results
   cx={[Function Function]}
   platformId={[Function String]}
-  searchInstance={[Function NgAisInstance]}
+  searchInstance={[Function TftInstantSearchInstance]}
   showMoreLabel={[Function String]}
   state={[Function Object]}
   template="undefined"
