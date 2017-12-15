@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { TftHeaderModule } from './modules/tft-header/tft-header.module';
-import { TftSearchModule } from './modules/index';
+import { TftSearchModule } from './modules/search/index';
 
 @NgModule({
   declarations: [
@@ -12,7 +11,6 @@ import { TftSearchModule } from './modules/index';
   ],
   imports: [
     BrowserModule,
-    TftHeaderModule,
     TftSearchModule.forRoot(),
   ],
   providers: [],
