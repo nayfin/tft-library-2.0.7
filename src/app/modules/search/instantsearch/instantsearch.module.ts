@@ -4,12 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { TftInstantSearchComponent } from './instantsearch.component';
 import { TftInstantSearchInstance } from './instantsearch-instance';
+import { DesignModule } from '../../design/design.module';
 
 @NgModule({
   declarations: [TftInstantSearchComponent],
   entryComponents: [TftInstantSearchComponent],
+  imports: [CommonModule, HttpClientModule],
   exports: [TftInstantSearchComponent],
-  imports: [CommonModule, HttpClientModule]
 })
 export class TftInstantSearchModule {
   public static forRoot(): ModuleWithProviders {

@@ -13,27 +13,29 @@
       [class]="cx('form')"
       novalidate
       (submit)="handleSubmit($event)">
-      <input
-        [class]="cx('input')"
-        autocapitalize="off"
-        autocorrect="off"
-        placeholder="{{placeholder}}"
-        role="textbox"
-        spellcheck="false"
-        type="text"
-        [value]="state.query"
-        (input)="handleChange($event.target.value)"
-        (focus)="focus.emit($event)"
-        (blur)="blur.emit($event)"/>
+      <mat-form-field>
+        <input
+          matInput
+          autocapitalize="off"
+          autocorrect="off"
+          placeholder="{{placeholder}}"
+          role="textbox"
+          spellcheck="false"
+          type="text"
+          [value]="state.query"
+          (input)="handleChange($event.target.value)"
+          (focus)="focus.emit($event)"
+          (blur)="blur.emit($event)"/>
+      </mat-form-field>
 
       <button mat-raised-button
-        [class]="cx('submit')"
+        color="primary"
         type="submit"
-        title="{{submitTitle}}"
         (click)="handleSubmit($event)">
         <mat-icon>
           search
         </mat-icon>
+        {{submitTitle}}
       </button>
 
       <button

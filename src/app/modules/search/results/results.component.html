@@ -1,0 +1,18 @@
+
+      <ng-container *ngTemplateOutlet="template; context: state"></ng-container>
+
+      <!-- default rendering if no template specified -->
+      <div *ngIf="!template">
+        
+          <mat-expansion-panel
+            *ngFor="let hit of state.hits">
+            <mat-expansion-panel-header>
+              <tft-highlight attributeName="name" [hit]="hit">
+              </tft-highlight>
+            </mat-expansion-panel-header>
+            <p>
+              {{ hit | json }}
+            </p>
+          </mat-expansion-panel>
+      
+      </div>

@@ -15,26 +15,7 @@ import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instanc
 
 @Component({
   selector: 'tft-results',
-  template: `
-    <div [class]="cx()">
-      <div [class]="cx('body')">
-        <ng-container *ngTemplateOutlet="template; context: state"></ng-container>
-
-        <!-- default rendering if no template specified -->
-        <div *ngIf="!template">
-          <ul [class]="cx('list')">
-            <li
-              [class]="cx('item')"
-              *ngFor="let hit of state.hits"
-            >
-              <tft-highlight attributeName="name" [hit]="hit">
-              </tft-highlight>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  `
+  templateUrl: 'results.component.html'
 })
 export class TftResultsComponent extends BaseWidget {
   @ContentChild(TemplateRef) public template?: TemplateRef<any>;

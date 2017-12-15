@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { TftHighlightModule } from '../highlight/highlight.module';
 import { TftResultsComponent } from './results.component';
+import { DesignModule } from '../../design/design.module';
 
 @NgModule({
   declarations: [TftResultsComponent],
@@ -10,7 +11,8 @@ import { TftResultsComponent } from './results.component';
   exports: [TftResultsComponent],
   imports: [
     CommonModule,
-    TftHighlightModule
+    TftHighlightModule,
+    DesignModule
   ]
 })
 export class TftResultsModule {}
