@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatToolbarModule,
@@ -60,16 +60,9 @@ const TFT_DESIGN_MODULES = [
 ];
 
 @NgModule({
-
   imports: TFT_DESIGN_MODULES,
   exports: TFT_DESIGN_MODULES
 })
 
 export class DesignModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: DesignModule,
-      providers: []
-    };
-  }
 }
