@@ -63,7 +63,10 @@ const TFT_SEARCH_MODULES = [
 })
 export class TftSearchRootModule {}
 
-@NgModule({ imports: TFT_SEARCH_MODULES, exports: TFT_SEARCH_MODULES })
+@NgModule({
+  imports: TFT_SEARCH_MODULES,
+  exports: TFT_SEARCH_MODULES
+})
 export class TftSearchModule {
   public static forRoot(): ModuleWithProviders {
     return { ngModule: TftSearchRootModule };
