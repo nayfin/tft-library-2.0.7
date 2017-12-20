@@ -1,0 +1,11 @@
+<mat-card>
+  <select
+    (change)="state.refine($event.target.value)">
+    <option
+      *ngFor="let item of state.options"
+      [value]="item.value"
+      [selected]="item.value === state.currentRefinement">
+      {{item.label}}
+    </option>
+  </select>
+</mat-card>

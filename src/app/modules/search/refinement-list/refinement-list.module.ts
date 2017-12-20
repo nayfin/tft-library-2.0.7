@@ -1,20 +1,20 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { NgAisFooterModule } from "../footer/footer.module";
-import { NgAisHeaderModule } from "../header/header.module";
-import { TftHighlightModule } from "../highlight/highlight.module";
-import { NgAisRefinementList } from "./refinement-list";
+import { TftHighlightModule } from '../highlight/highlight.module';
+import { TftRefinementListComponent } from './refinement-list.component';
+import { DesignModule } from '../../design';
 
 @NgModule({
-  declarations: [NgAisRefinementList],
-  entryComponents: [NgAisRefinementList],
-  exports: [NgAisRefinementList],
+  declarations: [TftRefinementListComponent],
+  entryComponents: [TftRefinementListComponent],
+  exports: [TftRefinementListComponent],
   imports: [
+    FormsModule,
     CommonModule,
-    NgAisHeaderModule,
-    NgAisFooterModule,
+    DesignModule,
     TftHighlightModule
   ]
 })
-export class NgAisRefinementListModule {}
+export class TftRefinementListModule {}

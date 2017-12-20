@@ -22,6 +22,7 @@ export class TftSearchBoxComponent extends BaseWidget {
   @Input() public submitTitle = 'Submit';
   @Input() public resetTitle = 'Reset';
   @Input() public searchAsYouType = true;
+  @Input() public displayResetButton = false;
 
   // Output events
   // form
@@ -33,6 +34,7 @@ export class TftSearchBoxComponent extends BaseWidget {
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
 
+  chipColor = 'accent'
   public state = {
     query: '',
     refine: noop

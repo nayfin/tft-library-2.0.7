@@ -10,10 +10,21 @@
 <div style="text-align:center">
   <h3> Instant Search Component </h3>
   <tft-instantsearch [config]="searchConfig">
-    <tft-search-box></tft-search-box>
-    <tft-results>
 
+    <tft-search-box>
+    </tft-search-box>
+
+    <tft-refinement-list attributeName="foodGroup" title="Filter by Food Group">
+    </tft-refinement-list>
+    <!-- <tft-sort-by [indices]="sortIndices">
+      
+    </tft-sort-by> -->
+    <tft-results>
     </tft-results>
+    
+    <tft-pagination>
+    </tft-pagination>
+
   </tft-instantsearch>
 </div>
 

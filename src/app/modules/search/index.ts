@@ -5,6 +5,9 @@ import { TftResultsModule } from './results/results.module';
 import { TftInstantSearchModule } from './instantsearch/instantsearch.module';
 import { TftSearchBoxModule } from './search-box/search-box.module';
 import { TftHighlightModule } from './highlight/highlight.module';
+import { TftSortByModule } from './sort-by/sort-by.module';
+import { TftRefinementListModule } from './refinement-list/refinement-list.module';
+import { TftPaginationModule } from './pagination/pagination.module';
 
 // import { NgAisInfiniteResultsModule } from './infinite-results/infinite-results.module';
 // import { NgAisBreadcrumbModule } from './breadcrumb/breadcrumb.module';
@@ -15,10 +18,7 @@ import { TftHighlightModule } from './highlight/highlight.module';
 // import { NgAisMenuModule } from './menu/menu.module';
 // import { NgAisNumericMenuModule } from './numeric-menu/numeric-menu.module';
 // import { NgAisNumericSelectorModule } from './numeric-selector/numeric-selector.module';
-// import { NgAisPaginationModule } from './pagination/pagination.module';
 // import { NgAisRangeSliderModule } from './range-slider/range-slider.module';
-// import { NgAisRefinementListModule } from './refinement-list/refinement-list.module';
-// import { NgAisSortByModule } from './sort-by/sort-by.module';
 // import { NgAisRatingMenuModule } from './rating-menu/rating-menu.module';
 // import { NgAisStatsModule } from './stats/stats.module';
 // import { NgAisToggleModule } from './toggle/toggle.module';
@@ -38,23 +38,9 @@ const TFT_SEARCH_MODULES = [
   TftResultsModule,
   TftSearchBoxModule,
   TftHighlightModule,
-  // NgAisClearRefinementsModule,
-  // NgAisMenuModule,
-  // NgAisPaginationModule,
-  // NgAisRefinementListModule,
-  // NgAisResultsPerPageModule,
-  // NgAisSortByModule,
-  // NgAisNumericSelectorModule,
-  // NgAisNumericMenuModule,
-  // NgAisStatsModule,
-  // NgAisToggleModule,
-  // NgAisInfiniteResultsModule,
-  // NgAisCurrentRefinementsModule,
-  // NgAisHierarchicalMenuModule,
-  // NgAisRatingMenuModule,
-  // NgAisRangeSliderModule,
-  // NgAisBreadcrumbModule,
-  // NgAisNumericRangeModule
+  TftSortByModule,
+  TftRefinementListModule,
+  TftPaginationModule,
 ];
 
 @NgModule({

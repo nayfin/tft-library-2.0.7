@@ -15,7 +15,8 @@ import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instanc
 
 @Component({
   selector: 'tft-results',
-  templateUrl: 'results.component.html'
+  templateUrl: 'results.component.html',
+  styleUrls: ['results.component.scss']
 })
 export class TftResultsComponent extends BaseWidget {
   @ContentChild(TemplateRef) public template?: TemplateRef<any>;

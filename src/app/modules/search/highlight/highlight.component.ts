@@ -9,7 +9,7 @@ import { bem } from '../utils';
 export class TftHighlightComponent {
   @Input() attributeName: string;
   @Input() hit: { _highlightResult?: {}; label?: string; highlighted?: string };
-  @Input() tagName: string = 'em';
+  @Input() tagName = 'em';
 
   cx = bem('Highlight')();
 

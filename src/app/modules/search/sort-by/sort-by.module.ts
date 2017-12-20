@@ -1,14 +1,17 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { NgAisFooterModule } from "../footer/footer.module";
-import { NgAisHeaderModule } from "../header/header.module";
-import { NgAisSortBy } from "./sort-by";
+import { DesignModule } from '../../design';
+
+import { TFTSortByComponent } from './sort-by.component';
 
 @NgModule({
-  declarations: [NgAisSortBy],
-  entryComponents: [NgAisSortBy],
-  exports: [NgAisSortBy],
-  imports: [CommonModule, NgAisHeaderModule, NgAisFooterModule]
+  declarations: [TFTSortByComponent],
+  entryComponents: [TFTSortByComponent],
+  exports: [TFTSortByComponent],
+  imports: [
+    CommonModule,
+    DesignModule,
+  ]
 })
-export class NgAisSortByModule {}
+export class TftSortByModule {}

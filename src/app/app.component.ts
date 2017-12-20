@@ -20,4 +20,11 @@ export class AppComponent {
     indexName: 'ingredients',
     urlSync: true
   };
+
+  sortIndices = [
+    {
+      name: 'ingredients/name',
+      label: 'Ingredients'
+    },
+  ];
 }

@@ -4,34 +4,13 @@ import { noop } from "lodash-es";
 
 import { BaseWidget } from "../base-widget";
 import { TftInstantSearchInstance } from "../instantsearch/instantsearch-instance";
+import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 
 @Component({
-  selector: "ng-ais-sort-by",
-  template: `
-    <div [class]="cx()">
-      <ng-ais-header [header]="header" [className]="cx('header')"></ng-ais-header>
-
-      <div [class]="cx('body')">
-        <select
-          [class]="cx('select')"
-          (change)="state.refine($event.target.value)"
-        >
-          <option
-            [class]="cx('option')"
-            *ngFor="let item of state.options"
-            [value]="item.value"
-            [selected]="item.value === state.currentRefinement"
-          >
-            {{item.label}}
-          </option>
-        </select>
-      </div>
-
-      <ng-ais-footer [footer]="footer" [className]="cx('footer')"></ng-ais-footer>
-    </div>
-  `
+  selector: 'tft-sort-by',
+  templateUrl: 'sort-by.component.html'
 })
-export class NgAisSortBy extends BaseWidget {
+export class TFTSortByComponent extends BaseWidget implements OnInit {
   @Input()
   public indices: {
     name: string;
