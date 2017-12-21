@@ -27,9 +27,11 @@ import {
   MatSnackBarModule,
   MatFormFieldModule,
   MatExpansionModule,
+  MatPaginatorModule,
 } from '@angular/material';
 
 const TFT_DESIGN_MODULES = [
+  MatPaginatorModule,
   FlexLayoutModule,
   MatToolbarModule,
   MatIconModule,

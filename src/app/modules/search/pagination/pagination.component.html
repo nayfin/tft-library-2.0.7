@@ -1,83 +1,51 @@
+length: total results
+pageSize: items per page
+pag
+<mat-paginator #paginator
+  [length]="state.nbHits"
+  [pageSize]="5"
+  (page)="page($event, paginator.click)"
+  (click)="onClick($event)">
+  
+</mat-paginator>
 
-<ul [class]="cx('list')">
   <li
     *ngIf="showFirst"
-    (click)="refine($event, 0)"
-    [class]="
-      cx('item', 'firstPage') +
-      (state.currentRefinement === 0 ? ' ' + cx('item', 'disabled') : '')
-    "
-  >
-    <a
-      [href]="state.createURL(0)"
-      [class]="cx('link')"
-    >
+    (click)="refine($event, 0)">
+    <a  [href]="state.createURL(0)">
       «
     </a>
   </li>
 
   <li
     *ngIf="showPrevious"
-    (click)="refine($event, state.currentRefinement - 1)"
-    [class]="
-      cx('item', 'previousPage') +
-      (state.currentRefinement === 0 ? ' ' + cx('item', 'disabled') : '')
-    "
-  >
-    <a
-      [href]="state.createURL(state.currentRefinement - 1)"
-      [class]="cx('link')"
-    >
+    (click)="refine($event, state.currentRefinement - 1)">
+    <a [href]="state.createURL(state.currentRefinement - 1)">
       ‹
     </a>
   </li>
 
   <li
-    [class]="
-      cx('item', 'page') +
-      (state.currentRefinement === page ? ' ' + cx('item', 'selected') : '')
-    "
     *ngFor="let page of pages"
-    (click)="refine($event, page)"
-  >
-    <a
-      [class]="cx('link')"
-      [href]="state.createURL(page)"
-    >
+    (click)="refine($event, page)">
+    <a [href]="state.createURL(page)">
       {{page + 1}}
     </a>
   </li>
 
   <li
     *ngIf="showNext"
-    (click)="refine($event, state.currentRefinement + 1)"
-    [class]="
-      cx('item', 'nextPage') +
-      (state.currentRefinement + 1 === state.nbPages ? ' ' + cx('item', 'disabled') : '')
-    "
-  >
-    <a
-      [href]="state.createURL(state.currentRefinement + 1)"
-      [class]="cx('link')"
-    >
-      ›
+    (click)="refine($event, state.currentRefinement + 1)">
+    <a [href]="state.createURL(state.currentRefinement + 1)">
+        ›
     </a>
   </li>
 
   <li
     *ngIf="showLast"
-    (click)="refine($event, state.nbPages)"
-    [class]="
-      cx('item', 'lastPage') +
-      (state.currentRefinement + 1 === state.nbPages ? ' ' + cx('item', 'disabled') : '')
-    "
-  >
-    <a
-      [href]="state.createURL(state.nbPages)"
-      [class]="cx('link')"
-    >
+    (click)="refine($event, state.nbPages)">
+    <a [href]="state.createURL(state.nbPages)">
       »
     </a>
   </li>
-</ul>
 

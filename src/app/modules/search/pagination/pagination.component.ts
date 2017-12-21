@@ -32,12 +32,11 @@ export class TftPaginationComponent extends BaseWidget {
 
   get pages() {
     const { nbPages, currentRefinement } = this.state;
-
+    console.log('state:', this.state);
     const pagesArray = Array.apply(null, { length: nbPages }).map(
       Number.call,
       Number
     );
-
     const pagesPadding =
       typeof this.pagesPadding === 'string'
         ? parseInt(this.pagesPadding, 10)
@@ -68,7 +67,6 @@ export class TftPaginationComponent extends BaseWidget {
         currentRefinement + pagesPadding + 1
       );
     }
-
     return pagesArray;
   }
 
@@ -85,11 +83,13 @@ export class TftPaginationComponent extends BaseWidget {
     });
     super.ngOnInit();
   }
+  page(event: MouseEvent, other: any) {
+    console.log("page", event, "other", other);
+  }
 
-  public refine(event: MouseEvent, page: number) {
-    event.stopPropagation();
-    event.preventDefault();
-
+  public refine(/*event: MouseEvent,*/ page: number) {
+    // event.stopPropagation();
+    // event.preventDefault();
     if (page <= this.state.nbPages && page >= 0) {
       this.state.refine(page);
     }
