@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { TftPaginationComponent } from './pagination.component';
 
 import { TftResultsPerPageModule } from '../results-per-page/results-per-page.module';
-import { DesignModule } from '../../design';
+import { DesignModule } from '../../design/design.module';
 
 @NgModule({
   declarations: [TftPaginationComponent],

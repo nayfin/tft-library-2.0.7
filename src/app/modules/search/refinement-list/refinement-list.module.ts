@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { TftHighlightModule } from '../highlight/highlight.module';
 import { TftRefinementListComponent } from './refinement-list.component';
-import { DesignModule } from '../../design';
+import { DesignModule } from '../../design/design.module';
 
 @NgModule({
   declarations: [TftRefinementListComponent],
