@@ -7,8 +7,8 @@ import { TftSearchBoxModule } from './search-box/search-box.module';
 import { TftHighlightModule } from './highlight/highlight.module';
 import { TftSortByModule } from './sort-by/sort-by.module';
 import { TftRefinementListModule } from './refinement-list/refinement-list.module';
-import { TftPaginationModule } from './pagination/pagination.module';
-import { TftResultsPerPageModule } from './results-per-page/results-per-page.module';
+// import { TftPaginationModule } from './pagination/pagination.module';
+// import { TftResultsPerPageModule } from './results-per-page/results-per-page.module';
 
 // import { NgAisInfiniteResultsModule } from './infinite-results/infinite-results.module';
 // import { NgAisBreadcrumbModule } from './breadcrumb/breadcrumb.module';
@@ -37,8 +37,8 @@ const TFT_SEARCH_MODULES = [
   TftInstantSearchModule,
   TftSearchBoxModule,
   TftResultsModule,
-  TftResultsPerPageModule,
-  TftPaginationModule,
+  // TftResultsPerPageModule,
+  // TftPaginationModule,
   TftHighlightModule,
   TftSortByModule,
   TftRefinementListModule,
