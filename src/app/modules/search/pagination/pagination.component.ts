@@ -1,11 +1,10 @@
-import { Component, Input, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Input, ViewChild, Inject, PLATFORM_ID, OnInit, OnChanges } from '@angular/core';
 import { connectPagination } from 'instantsearch.js/es/connectors';
 import { noop, range } from 'lodash-es';
 
 import { BaseWidget } from '../base-widget';
 import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 import { parseNumberInput } from '../utils';
-import { OnInit, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { TftResultsPerPageComponent } from '../results-per-page/results-per-page.component';
 
 @Component({
