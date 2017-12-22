@@ -23,7 +23,7 @@ export class TftPaginationComponent extends BaseWidget implements OnInit {
 
   // connector optionsw
   @Input() public maxPages?: number | string;
-  @ViewChild(TftResultsPerPageComponent) perPage: TftResultsPerPageComponent;
+  // @ViewChild(TftResultsPerPageComponent) perPage: TftResultsPerPageComponent;
   
   pageSizes = [10, 25, 50, 100];
   pageSizeOptions = this.pageSizes.map( (val, index) => {
@@ -59,7 +59,7 @@ export class TftPaginationComponent extends BaseWidget implements OnInit {
     // event.preventDefault();
     const page = pageOptions.pageIndex;
     if (page <= this.state.nbPages && page >= 0) {
-      this.perPage.state.refine(pageOptions.pageSize);
+      // this.perPage.state.refine(pageOptions.pageSize);
       this.state.refine(page);
     }
   }
