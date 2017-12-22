@@ -1,51 +1,9 @@
-length: total results
-pageSize: items per page
-pag
-<mat-paginator #paginator
+<mat-paginator
   [length]="state.nbHits"
-  [pageSize]="5"
-  (page)="page($event, paginator.click)"
-  (click)="onClick($event)">
-  
+  [pageSize]="state.pageSize"
+  [pageSizeOptions]="pageSizes"
+  (page)="refine($event)">
 </mat-paginator>
 
-  <li
-    *ngIf="showFirst"
-    (click)="refine($event, 0)">
-    <a  [href]="state.createURL(0)">
-      «
-    </a>
-  </li>
-
-  <li
-    *ngIf="showPrevious"
-    (click)="refine($event, state.currentRefinement - 1)">
-    <a [href]="state.createURL(state.currentRefinement - 1)">
-      ‹
-    </a>
-  </li>
-
-  <li
-    *ngFor="let page of pages"
-    (click)="refine($event, page)">
-    <a [href]="state.createURL(page)">
-      {{page + 1}}
-    </a>
-  </li>
-
-  <li
-    *ngIf="showNext"
-    (click)="refine($event, state.currentRefinement + 1)">
-    <a [href]="state.createURL(state.currentRefinement + 1)">
-        ›
-    </a>
-  </li>
-
-  <li
-    *ngIf="showLast"
-    (click)="refine($event, state.nbPages)">
-    <a [href]="state.createURL(state.nbPages)">
-      »
-    </a>
-  </li>
+<tft-results-per-page [items]="pageSizeOptions"></tft-results-per-page>
 

@@ -7,12 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-
-  todos: string[] = [
-    'Finish converting ngais to tft',
-    'Move DesignModule to library and integrate material design into search templates',
-  ];
-
+  
   searchConfig = {
 
     appId: 'K3CROWK8OK',
@@ -27,4 +22,9 @@ export class AppComponent {
       label: 'Ingredients'
     },
   ];
+
+  logItem(item: any) {
+    console.log("logItem",item);
+    return item;
+  }
 }
