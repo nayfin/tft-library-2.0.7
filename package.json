@@ -1,11 +1,16 @@
 {
   "name": "tft-library",
   "version": "1.1.24",
+  "author": "Nathan Kern",
+  "license": "MIT",
+  "description": "Tortilla Flat Technologies component library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nayfin/tft-library.git"
+    "url": "git+https://github.com/nayfin/tft-library.git"
   },
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nayfin/tft-library/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,8 +18,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json",
-    "package-n-publish": "npm version patch && npm run packagr && npm publish dist"
+    "packagr": "ng-packagr -p ng-package.json"
   },
   "private": false,
   "peerDependencies": {
@@ -64,5 +68,13 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
-  }
+  },  
+  "keywords": [
+    "algolia",
+    "firestore",
+    "firebase",
+    "material design",
+    "component library",
+    ""
+  ]
 }
