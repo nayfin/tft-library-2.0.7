@@ -1,6 +1,6 @@
 {
   "name": "tft-library",
-  "version": "1.1.24",
+  "version": "1.1.25",
   "author": "Nathan Kern",
   "license": "MIT",
   "description": "Tortilla Flat Technologies component library",
@@ -68,7 +68,7 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
-  },  
+  },
   "keywords": [
     "algolia",
     "firestore",
