@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  
+
   searchConfig = {
 
     appId: 'K3CROWK8OK',
@@ -24,7 +24,7 @@ export class AppComponent {
   ];
 
   logItem(item: any) {
-    console.log("logItem",item);
+    console.log("logItem", item);
     return item;
   }
 }

@@ -1,11 +1,11 @@
-import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Input, Inject, OnInit, AfterContentInit, ViewChild, PLATFORM_ID } from '@angular/core';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import { noop, isFunction } from 'lodash-es';
 
 import { BaseWidget } from '../base-widget';
 import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 import { parseNumberInput } from '../utils';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { MatSelect } from '@angular/material';
 
 export interface RefinementListState {
   canRefine: boolean;
@@ -24,7 +24,7 @@ export interface RefinementListState {
   templateUrl: 'refinement-list.component.html',
   styleUrls: ['refinement-list.component.scss'],
 })
-export class TftRefinementListComponent extends BaseWidget implements OnInit {
+export class TftRefinementListComponent extends BaseWidget implements OnInit, AfterContentInit {
   // render options
   @Input() public title: string | null = null;
   @Input() public showMoreLabel = 'Show more';
@@ -40,6 +40,7 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit {
   @Input() public limitMax: number | string;
   @Input() public sortBy: string[] | ((item: object) => number);
 
+  @ViewChild(MatSelect) groupsSelect: MatSelect;
   // inner state
   searchQuery = '';
 
@@ -57,18 +58,36 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: TftInstantSearchInstance
+    searchInstance: TftInstantSearchInstance,
+    // private cdr: ChangeDetectorRef,
   ) {
     super(searchInstance, 'RefinementList');
   }
 
   get items() {
+    this.state.items.forEach((item: any, i, arr) => {
+      // console.log("item", item);
+      const mappedOption = this.groupsSelect.options.find(option => {
+        return option.value === item.value;
+      });
+      console.log('mappedOption', mappedOption);
+      if ( mappedOption ) {
+        this.selectAll();
+        // if ( item.isRefined ) {
+        //   mappedOption.select();
+        // } else {
+        //   mappedOption.deselect();
+        // }
+      }
+    });
+
+    
     return isFunction(this.transformItems)
       ? this.transformItems(this.state.items)
       : this.state.items;
   }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.createWidget(connectRefinementList, {
       limit: parseNumberInput(this.limitMin),
       showMoreLimit: parseNumberInput(this.limitMax),
@@ -76,8 +95,34 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit {
       sortBy: this.sortBy,
       escapeFacetValues: true
     });
-
     super.ngOnInit();
+    // console.log("items", this.items);
+    // console.log("groupsSelect", this.groupsSelect);
+  }
+
+  ngAfterContentInit() {
+    // this.cdr.detectChanges();
+    // this.groupsSelect.registerOnChange((val) => {
+    //   console.log("registerOnChange", val);
+    // });
+  }
+  
+  selectAll() {
+
+    this.groupsSelect.options.forEach( option => {
+      option.select();
+      console.log(option);
+    });
+  }
+
+  deselectAll() {
+    this.groupsSelect.options.forEach( option => {
+      option.select();
+      console.log(option);
+    });
+  }
+  onChange(event: any) {
+    console.log("change:", event);
   }
 
   public refine(
@@ -86,7 +131,7 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit {
   ) {
     event.preventDefault();
     event.stopPropagation();
-
+    console.log("refine event", event, "item", item );
     if (this.state.canRefine) {
       // update UI directly, it will update the checkbox state
       item.isRefined = !item.isRefined;
