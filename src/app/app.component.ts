@@ -8,21 +8,21 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
+  // A sample index provided by Algolia for testing 
   searchConfig = {
-
-    appId: 'K3CROWK8OK',
-    apiKey: '6939af36b945c8a8e94c95984b4b9ce6',
-    indexName: 'ingredients',
-    urlSync: true
+    apiKey: '6be0576ff61c053d5f9a3225e2a90f76',
+    appId: 'latency',
+    indexName: 'instant_search'
   };
+  // The category of the index by which to filter
+  // Must set this up via Algolia console to enable for custom indices
+  filterCategory = 'brand';
 
-  sortIndices = [
-    {
-      name: 'ingredients/name',
-      label: 'Ingredients'
-    },
-  ];
-
+  // The placeholder for the filter dropdown
+  filterPlaceholder = 'Filter by brand';
+  
+  // This function gets passed to the items getter in results component via the transformItems input
+  // This just logs the items but it could be used to perform transformations as needed
   logItem(item: any) {
     console.log("logItem", item);
     return item;
