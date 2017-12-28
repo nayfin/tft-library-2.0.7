@@ -1,4 +1,4 @@
-import { Component, Input, Inject, OnInit, AfterContentInit, ViewChild, PLATFORM_ID } from '@angular/core';
+import { Component, Input, Inject, OnInit, AfterContentChecked, ViewChild, PLATFORM_ID } from '@angular/core';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import { noop, isFunction } from 'lodash-es';
 
@@ -19,12 +19,17 @@ export interface RefinementListState {
   isFormSearch: boolean;
 }
 
+export interface RefinementListItem {
+  isRefined: boolean;
+  value: string;
+}
+
 @Component({
   selector: 'tft-refinement-list',
   templateUrl: 'refinement-list.component.html',
   styleUrls: ['refinement-list.component.scss'],
 })
-export class TftRefinementListComponent extends BaseWidget implements OnInit, AfterContentInit {
+export class TftRefinementListComponent extends BaseWidget implements OnInit, AfterContentChecked {
   // render options
   @Input() public title: string | null = null;
   @Input() public showMoreLabel = 'Show more';
@@ -65,23 +70,6 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
   }
 
   get items() {
-    this.state.items.forEach((item: any, i, arr) => {
-      // console.log("item", item);
-      const mappedOption = this.groupsSelect.options.find(option => {
-        return option.value === item.value;
-      });
-      console.log('mappedOption', mappedOption);
-      if ( mappedOption ) {
-        this.selectAll();
-        // if ( item.isRefined ) {
-        //   mappedOption.select();
-        // } else {
-        //   mappedOption.deselect();
-        // }
-      }
-    });
-
-    
     return isFunction(this.transformItems)
       ? this.transformItems(this.state.items)
       : this.state.items;
@@ -96,42 +84,22 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
       escapeFacetValues: true
     });
     super.ngOnInit();
-    // console.log("items", this.items);
-    // console.log("groupsSelect", this.groupsSelect);
   }
 
-  ngAfterContentInit() {
-    // this.cdr.detectChanges();
-    // this.groupsSelect.registerOnChange((val) => {
-    //   console.log("registerOnChange", val);
-    // });
-  }
-  
-  selectAll() {
-
-    this.groupsSelect.options.forEach( option => {
-      option.select();
-      console.log(option);
-    });
-  }
-
-  deselectAll() {
-    this.groupsSelect.options.forEach( option => {
-      option.select();
-      console.log(option);
-    });
-  }
-  onChange(event: any) {
-    console.log("change:", event);
+  ngAfterContentChecked() {
+    // checks state for selected items i.e. isRefined
+    // checks the boxes of the selected items in material dropdown by setting its value to an array of the values else an empty array
+    this.groupsSelect.value = this.state.items.length > 0
+    ? this.state.items.filter((val: RefinementListItem) => val.isRefined ).map((option: RefinementListItem) => option.value )
+    : [];
   }
 
   public refine(
     event: MouseEvent,
-    item: { isRefined: boolean; value: string }
+    item: RefinementListItem
   ) {
     event.preventDefault();
     event.stopPropagation();
-    console.log("refine event", event, "item", item );
     if (this.state.canRefine) {
       // update UI directly, it will update the checkbox state
       item.isRefined = !item.isRefined;

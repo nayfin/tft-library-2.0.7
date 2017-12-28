@@ -13,47 +13,18 @@
     (input)="handleChange($event.target.value)"
   />
 </form>
+
 <mat-form-field>
-  <mat-select [placeholder]="title" multiple="true">
+  <mat-select [placeholder]="title" multiple="true" >
     <mat-option 
       *ngFor="let item of items" 
       [value]="item.value"     
       (click)="refine($event, item)">
       {{ item.label | titlecase }}
-
     </mat-option>
   </mat-select>
 </mat-form-field>
-<!-- <mat-selection-list>
-  <mat-list-option
-    *ngFor="let item of items" 
-    [selected]="item.isRefined" 
-    (click)="refine($event, item)">
-    
-    <mat-chip-list>
-      <mat-chip 
-        color='accent' 
-        selected="true">
-        {{item.count}}
-      </mat-chip>
-      <tft-highlight
-        attributeName="highlighted"
-        [hit]="item">
-      </tft-highlight>
-    </mat-chip-list>
 
-  </mat-list-option>
-</mat-selection-list> -->
-<button 
-  mat-button 
-  (click)="selectAll()">
-  Select All
-</button>
-<button 
-  mat-button 
-  (click)="deselectAll()">
-  Deselect All
-</button>
 <button
   *ngIf="state.canToggleShowMore"
   (click)="state.toggleShowMore()">
