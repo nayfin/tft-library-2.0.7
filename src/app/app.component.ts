@@ -22,9 +22,9 @@ export class AppComponent {
   filterPlaceholder = 'Filter by brand';
   
   // This function gets passed to the items getter in results component via the transformItems input
-  // This just logs the items but it could be used to perform transformations as needed
+  // This just logs the items but it could be used to perform transformations as needed by returning a transformed item
   logItem(item: any) {
-    console.log("logItem", item);
+    console.log('logItem', item);
     return item;
   }
 }
