@@ -7,7 +7,7 @@ import { TftSearchModule } from './modules/search/index';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

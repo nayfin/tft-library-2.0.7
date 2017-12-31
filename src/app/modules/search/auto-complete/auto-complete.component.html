@@ -1,0 +1,72 @@
+  <!-- <mat-form-field>
+    <input
+      matInput
+      autocapitalize="off"
+      autocorrect="off"
+      placeholder="{{placeholder}}"
+      role="textbox"
+      spellcheck="false"
+      type="text"
+      [value]="state.query"
+      (input)="handleChange($event.target.value)"
+      (focus)="focus.emit($event)"
+      (blur)="blur.emit($event)"/>
+  </mat-form-field>
+
+  <tft-results>    
+    <ng-template let-hits="hits">
+
+      <tft-ingredient-item *ngFor="let ingredient of hits" [ingredient]="ingredient">
+      </tft-ingredient-item>
+    </ng-template>
+  </tft-results> -->
+
+  <mat-form-field class="example-full-width">
+      <input 
+        matInput 
+        [placeholder]="placeholder"
+        [matAutocomplete]="auto"
+        [value]="state.query"
+        (input)="handleChange($event.target.value)"
+        (focus)="focus.emit($event)"
+        (blur)="blur.emit($event)">
+      <mat-autocomplete #auto="matAutocomplete">
+        <tft-results>    
+          <ng-template let-hits="hits">
+            <mat-option *ngFor="let hit of hits" [value]="hit.name">
+              <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+              <span>{{ hit.name }}</span>
+            </mat-option>
+      
+            <!-- <tft-ingredient-item *ngFor="let ingredient of hits" [ingredient]="ingredient">
+            </tft-ingredient-item> -->
+          </ng-template>
+          </tft-results>
+      </mat-autocomplete>
+    </mat-form-field>
+
+  <button mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmit($event)">
+    <mat-icon>
+      search
+    </mat-icon>
+    {{ submitTitle }}
+  </button>
+
+
+  <!-- <button 
+    *ngIf="displayResetButton"
+    mat-raised-button
+    color="accent"
+    type="reset"
+    title="{{resetTitle}}"
+    (click)="handleReset($event)">
+    <mat-icon>
+      close
+    </mat-icon>
+    {{ resetTitle }}
+  </button> -->
+
+
