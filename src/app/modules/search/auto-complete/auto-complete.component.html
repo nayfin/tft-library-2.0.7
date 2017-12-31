@@ -22,28 +22,28 @@
   </tft-results> -->
 
   <mat-form-field class="example-full-width">
-      <input 
-        matInput 
-        [placeholder]="placeholder"
-        [matAutocomplete]="auto"
-        [value]="state.query"
-        (input)="handleChange($event.target.value)"
-        (focus)="focus.emit($event)"
-        (blur)="blur.emit($event)">
-      <mat-autocomplete #auto="matAutocomplete">
-        <tft-results>    
-          <ng-template let-hits="hits">
-            <mat-option *ngFor="let hit of hits" [value]="hit.name">
-              <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
-              <span>{{ hit.name }}</span>
-            </mat-option>
-      
-            <!-- <tft-ingredient-item *ngFor="let ingredient of hits" [ingredient]="ingredient">
-            </tft-ingredient-item> -->
-          </ng-template>
-          </tft-results>
-      </mat-autocomplete>
-    </mat-form-field>
+    <input 
+      matInput 
+      [placeholder]="placeholder"
+      [matAutocomplete]="auto"
+      [value]="state.query"
+      (input)="handleChange($event.target.value)"
+      (focus)="focus.emit($event)"
+      (blur)="blur.emit($event)">
+    <mat-autocomplete #auto="matAutocomplete">
+      <tft-results>    
+        <ng-template let-hits="hits">
+          <mat-option *ngFor="let hit of hits" [value]="hit.name">
+            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+            <span>{{ hit.name }}</span>
+          </mat-option>
+    
+          <!-- <tft-ingredient-item *ngFor="let ingredient of hits" [ingredient]="ingredient">
+          </tft-ingredient-item> -->
+        </ng-template>
+        </tft-results>
+    </mat-autocomplete>
+  </mat-form-field>
 
   <button mat-raised-button
     color="primary"
