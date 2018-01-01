@@ -11,6 +11,7 @@ import { noop } from 'lodash-es';
 
 import { BaseWidget } from '../base-widget';
 import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'tft-auto-complete',
@@ -19,23 +20,27 @@ import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instanc
 })
 export class AutoCompleteComponent extends BaseWidget {
 
-  @Input() public placeholder = 'Search';
-  @Input() public submitTitle = 'Submit';
-  @Input() public resetTitle = 'Reset';
-  @Input() public searchAsYouType = true;
-  @Input() public displayResetButton = false;
+  @Input() public placeholder = 'Search Item';
+  @Input() public selectTitle = 'Select';
+  @Input() public imageUrlParam = 'image';
+  @Input() public clearTitle = 'Clear';
+  @Input() public displayClearButton = true;
+  @Input() public validators: Validators[] = [];
 
   // Output events
   // form
-  @Output() submit = new EventEmitter();
+  @Output() select = new EventEmitter();
   @Output() reset = new EventEmitter();
-
+  @Output() submit = new EventEmitter();
   // input
-  @Output() change = new EventEmitter();
+  // @Output() change = new EventEmitter();
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
 
-  chipColor = 'accent';
+  // data of item selected from autocomplete dropdown
+  selected: any;
+
+  formContainer: FormGroup;
 
   public state = {
     query: '',
@@ -44,39 +49,41 @@ export class AutoCompleteComponent extends BaseWidget {
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    searchInstance: TftInstantSearchInstance
+    private fb: FormBuilder,
+    searchInstance: TftInstantSearchInstance,
   ) {
     super(searchInstance, 'SearchBox');
     this.createWidget(connectSearchBox);
+
+    this.formContainer = this.fb.group({
+      'autoComplete': null
+    });
   }
 
   public handleChange(query: string) {
-    this.change.emit(query);
-
-    if (this.searchAsYouType) {
-      this.state.refine(query);
-    }
-
-    console.log('handleChange this.state:', this.state);
+    // this.change.emit(query);
+    this.state.refine(query);
   }
 
-  public handleSubmit(event: MouseEvent) {
+  public handleSelect(mouseEvent: MouseEvent, item: any) {
     // send submit event to parent component
-    this.submit.emit(event);
-
+    this.select.emit({ mouseEvent, item } );
+    this.selected = item;
     event.preventDefault();
-
-    if (!this.searchAsYouType) {
-      this.state.refine(this.state.query);
-    }
   }
 
-  public handleReset(event: MouseEvent) {
+  public handleSubmit(mouseEvent: MouseEvent) {
+    // send submit event to parent component with selected item
+    this.submit.emit({ mouseEvent, item : this.formContainer } );
+    event.preventDefault();
+  }
+
+  public handleClear(event: MouseEvent) {
     // send reset event to parent component
     this.reset.emit(event);
-
     // reset search
     this.state.refine('');
+    this.formContainer.get('autoComplete').reset();
   }
 }
 
