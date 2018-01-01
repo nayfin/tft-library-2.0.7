@@ -1,12 +1,11 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
 import instantsearch from 'instantsearch.js/es';
 
 import { Widget } from '../base-widget';
 
 // TODO: check if changing type to interface breaks anything
-export type InstantSearchConfig = {
+export interface InstantSearchConfig {
   appId: string;
   apiKey: string;
   indexName: string;
@@ -28,7 +27,7 @@ export type InstantSearchConfig = {
         useHash?: boolean;
         getHistoryState?: () => object;
       };
-};
+}
 
 export class InstantSearchInstance {
   public start: () => void;

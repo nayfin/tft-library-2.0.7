@@ -25,17 +25,18 @@ export class AutoCompleteComponent extends BaseWidget {
   @Input() public imageUrlParam = 'image';
   @Input() public clearTitle = 'Clear';
   @Input() public displayClearButton = true;
+  @Input() public clearOnSubmit = true;
+
   @Input() public validators: Validators[] = [];
+  // TODO: Define searchConfig class
 
   // Output events
-  // form
   @Output() select = new EventEmitter();
   @Output() reset = new EventEmitter();
   @Output() submit = new EventEmitter();
-  // input
-  // @Output() change = new EventEmitter();
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
+  // @Output() change = new EventEmitter();
 
   // data of item selected from autocomplete dropdown
   selected: any;
@@ -56,7 +57,7 @@ export class AutoCompleteComponent extends BaseWidget {
     this.createWidget(connectSearchBox);
 
     this.formContainer = this.fb.group({
-      'autoComplete': null
+      'autocomplete': [null, this.validators]
     });
   }
 
@@ -74,8 +75,11 @@ export class AutoCompleteComponent extends BaseWidget {
 
   public handleSubmit(mouseEvent: MouseEvent) {
     // send submit event to parent component with selected item
-    this.submit.emit({ mouseEvent, item : this.formContainer } );
     event.preventDefault();
+    this.submit.emit({ mouseEvent, item : this.selected } );
+    if ( this.clearOnSubmit ) {
+      this.clearValue();
+    }
   }
 
   public handleClear(event: MouseEvent) {
@@ -83,7 +87,11 @@ export class AutoCompleteComponent extends BaseWidget {
     this.reset.emit(event);
     // reset search
     this.state.refine('');
-    this.formContainer.get('autoComplete').reset();
+    this.clearValue();
+  }
+
+  clearValue() {
+    this.formContainer.get('autocomplete').reset();
   }
 }
 

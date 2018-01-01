@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InstantSearchConfig } from './modules/search/instantsearch/instantsearch-instance';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,17 @@ export class AppComponent {
   title = 'app';
 
   // A sample index provided by Algolia for testing 
-  searchConfig = {
+  searchConfig: InstantSearchConfig = {
     apiKey: '6be0576ff61c053d5f9a3225e2a90f76',
     appId: 'latency',
     indexName: 'instant_search'
+  };
+
+  autocompleteConfig: InstantSearchConfig = {
+    appId: 'latency',
+    apiKey: '3d9875e51fbd20c7754e65422f7ce5e1',
+    indexName: 'bestbuy',
+    urlSync: false
   };
   // The category of the index by which to filter
   // Must set this up via Algolia console to enable for custom indices
