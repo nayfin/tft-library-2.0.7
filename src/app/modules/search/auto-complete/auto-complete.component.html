@@ -1,5 +1,6 @@
 
 <form [formGroup]="formContainer">
+
   <mat-form-field>
     <input 
       matInput
@@ -13,6 +14,7 @@
       (input)="handleChange($event.target.value)"
       (focus)="focus.emit($event)"
       (blur)="blur.emit($event)">
+      
     <mat-autocomplete #auto="matAutocomplete">
       <tft-results>    
         <ng-template let-hits="hits">
@@ -44,16 +46,17 @@
     {{ selectTitle }}
   </button>
 
-
   <button 
     *ngIf="displayClearButton"
     mat-raised-button
     color="accent"
     title="{{clearTitle}}"
+    type="button"
     (click)="handleClear($event)">
     <mat-icon>
       close
     </mat-icon>
     {{ clearTitle }}
   </button>
+
 </form>
