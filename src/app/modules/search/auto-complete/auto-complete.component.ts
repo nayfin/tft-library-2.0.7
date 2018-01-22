@@ -16,7 +16,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'tft-auto-complete',
   templateUrl: './auto-complete.component.html',
-  styleUrls: ['./auto-complete.component.css']
+  styleUrls: ['./auto-complete.component.scss']
 })
 export class AutoCompleteComponent extends BaseWidget {
 

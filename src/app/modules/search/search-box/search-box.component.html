@@ -1,43 +1,47 @@
-<!-- <form
-  [class]="cx('form')"
-  novalidate
-  (submit)="handleSubmit($event)"> -->
-  <mat-form-field>
-    <input
-      matInput
-      autocapitalize="off"
-      autocorrect="off"
-      placeholder="{{placeholder}}"
-      role="textbox"
-      spellcheck="false"
-      type="text"
-      [value]="state.query"
-      (input)="handleChange($event.target.value)"
-      (focus)="focus.emit($event)"
-      (blur)="blur.emit($event)"/>
-  </mat-form-field>
 
-  <button mat-raised-button
-    color="primary"
-    type="submit"
-    (click)="handleSubmit($event)">
-    <mat-icon>
-      search
-    </mat-icon>
-    {{ submitTitle }}
-  </button>
+<mat-form-field>
+  <input
+    matInput
+    autocapitalize="off"
+    autocorrect="off"
+    placeholder="{{placeholder}}"
+    role="textbox"
+    spellcheck="false"
+    type="text"
+    [value]="state.query"
+    (input)="handleChange($event.target.value)"
+    (focus)="focus.emit($event)"
+    (blur)="blur.emit($event)"/>
+</mat-form-field>
 
-  <button 
-    *ngIf="displayResetButton"
-    mat-raised-button
-    color="accent"
-    type="reset"
-    title="{{resetTitle}}"
-    (click)="handleReset($event)">
-    <mat-icon>
-      close
-    </mat-icon>
-    {{ resetTitle }}
-  </button>
-<!-- </form> -->
+<button mat-raised-button
+  color="primary"
+  type="submit"
+  (click)="handleSubmit($event)">
+  <mat-icon>
+    search
+  </mat-icon>
+  {{ submitTitle }}
+</button>
+
+<button 
+  *ngIf="displayResetButton"
+  mat-raised-button
+  color="accent"
+  type="reset"
+  title="{{resetTitle}}"
+  (click)="handleReset($event)">
+  <mat-icon>
+    close
+  </mat-icon>
+  {{ resetTitle }}
+</button>
+<div class="algolia-disclaimer">
+  <span class="mat-subheading-2">
+    powered by 
+  </span>
+  <img 
+    src='../../../assets/images/logos/algolia.png' 
+    alt='algolia logo'>
+</div>
 
