@@ -34,6 +34,7 @@ then
   echo "Not a valid semantic update, try 'patch', 'minor', or 'major'"
   exit 1
 fi
+
 npm version "${update_type}"
 
 npm run packagr
