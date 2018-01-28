@@ -14,18 +14,19 @@ fi
 # TODO: Request git status and ask user to commit changes
 
 # # read actual dist/package.json version
-# actual_version=$(grep version package.json | cut -c 15- | rev | cut -c 3- | rev)
+# actual_version=$(grep version package.json cut -c 15- | rev | cut -c 3- | rev)
 
 # # ask user for next version
 # echo
 # echo "Actual version: ${actual_version}"
-echo "What type of update is this ? ('patch', 'minor', 'major')"
-update_options=(patch minor major)
+echo "What type of update is this ?"
+update_options=(major minor patch premajor preminor prepatch prerelease from-git)
 #TODO: check update_type against update_options
-echo ${update_options[*]}
+echo "options: ${update_options[*]}"
 read update_type
 echo ${update_type}
 
+# TODO: properly check against update_options array instead of limping through this if statement
 if [ "$update_type" != "patch" ] && [ "$update_type" != "minor" ] && [ "$update_type" != "major" ]
 then
   echo "Not a valid semantic update, try 'patch', 'minor', or 'major'"
