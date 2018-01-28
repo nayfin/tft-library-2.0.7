@@ -31,6 +31,8 @@ read update_type
 npm version "${update_type}"
 
 npm run packagr
+
+npm publish dist
 # # replace package.json with next version
 # # sed -i.bak "s/${actual_version}/${next_version}/g" src/version.ts
 # # sed -i.bak "s/${actual_version}/${next_version}/g" dist/package.json
