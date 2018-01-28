@@ -24,8 +24,9 @@ update_options=(patch minor major)
 #TODO: check update_type against update_options
 echo ${update_options[*]}
 read update_type
+echo ${update_type}
 
-if [ "$update_type" != "patch"] #|| ["$update_type" != "minor"] || ["$update_type" != "major" ]
+if [ "$update_type" != "patch" ] && [ "$update_type" != "minor" ] && [ "$update_type" != "major" ]
 then
   echo "Not a valid semantic update, try 'patch', 'minor', or 'major'"
   exit 1
