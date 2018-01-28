@@ -4,6 +4,7 @@
     matInput
     autocapitalize="off"
     autocorrect="off"
+    autocomplete="off"
     placeholder="{{placeholder}}"
     role="textbox"
     spellcheck="false"
@@ -36,12 +37,15 @@
   </mat-icon>
   {{ resetTitle }}
 </button>
-<div class="algolia-disclaimer">
+
+<div 
+  *ngIf="algoliaAttribution"
+  class="algolia-disclaimer">
   <span class="mat-subheading-2">
     powered by 
   </span>
   <img 
-    src='../../../assets/images/logos/algolia.png' 
+    [src]="pathToAlgoliaImage" 
     alt='algolia logo'>
 </div>
 

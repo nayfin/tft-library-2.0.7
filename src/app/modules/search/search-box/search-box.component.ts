@@ -21,9 +21,12 @@ export class TftSearchBoxComponent extends BaseWidget {
   @Input() public placeholder = 'Search';
   @Input() public submitTitle = 'Submit';
   @Input() public resetTitle = 'Reset';
+  // TODO: Send file with library or set up cdn to dist
+  // For now the src code needs the image file in this path or in a path designated by user via input below
+  @Input() public pathToAlgoliaImage = '../../../assets/images/logos/algolia.png';
   @Input() public searchAsYouType = true;
   @Input() public displayResetButton = false;
-
+  @Input() public algoliaAttribution = true;
   // Output events
   // form
   @Output() submit = new EventEmitter();
@@ -34,7 +37,7 @@ export class TftSearchBoxComponent extends BaseWidget {
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
 
-  chipColor = 'accent'
+  // chipColor = 'accent';
   public state = {
     query: '',
     refine: noop
