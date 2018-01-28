@@ -11,20 +11,22 @@ then
   exit 1
 fi
 
-# TODO: Request git status and ask user to commit changes
-
+# TODO: Request git status and ask user to commit changes if needed
+#       Below code doesn't work as it checking dist folder, need to figure out why and change to check package.json of root folder
 # # read actual dist/package.json version
-# actual_version=$(grep version package.json cut -c 15- | rev | cut -c 3- | rev)
+actual_version=$(grep version 'package.json')
 
-# # ask user for next version
-# echo
-# echo "Actual version: ${actual_version}"
-echo "What type of update is this ?"
+# ask user for next version
+echo
+echo " ${actual_version}"
+
+# holds viable update types to check against user input
 update_options=(major minor patch premajor preminor prepatch prerelease from-git)
-#TODO: check update_type against update_options
+
+echo "What type of update is this?"
 echo "options: ${update_options[*]}"
+
 read update_type
-echo ${update_type}
 
 # TODO: properly check against update_options array instead of limping through this if statement
 if [ "$update_type" != "patch" ] && [ "$update_type" != "minor" ] && [ "$update_type" != "major" ]
