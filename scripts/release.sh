@@ -1,4 +1,4 @@
 
 npm version patch
 
-npm packagr
+npm run packagr
