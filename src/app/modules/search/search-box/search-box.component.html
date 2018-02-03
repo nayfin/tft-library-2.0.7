@@ -1,51 +1,54 @@
+<div fxFlexfill>
 
-<mat-form-field>
-  <input
-    matInput
-    autocapitalize="off"
-    autocorrect="off"
-    autocomplete="off"
-    placeholder="{{placeholder}}"
-    role="textbox"
-    spellcheck="false"
-    type="text"
-    [value]="state.query"
-    (input)="handleChange($event.target.value)"
-    (focus)="focus.emit($event)"
-    (blur)="blur.emit($event)"/>
-</mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      autocapitalize="off"
+      autocorrect="off"
+      autocomplete="off"
+      placeholder="{{placeholder}}"
+      role="textbox"
+      spellcheck="false"
+      type="text"
+      [value]="state.query"
+      (input)="handleChange($event.target.value)"
+      (focus)="focus.emit($event)"
+      (blur)="blur.emit($event)"/>
+  </mat-form-field>
+  
+  <button mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmit($event)">
+    <mat-icon>
+      search
+    </mat-icon>
+    {{ submitTitle }}
+  </button>
+  
+  <button 
+    *ngIf="displayResetButton"
+    mat-raised-button
+    color="accent"
+    type="reset"
+    title="{{resetTitle}}"
+    (click)="handleReset($event)">
+    <mat-icon>
+      close
+    </mat-icon>
+    {{ resetTitle }}
+  </button>
+  
+  <div 
+    *ngIf="algoliaAttribution"
+    class="algolia-disclaimer">
+    <span class="mat-subheading-2">
+      powered by 
+    </span>
+    <img 
+      [src]="pathToAlgoliaImage" 
+      alt='algolia logo'>
+  </div>
 
-<button mat-raised-button
-  color="primary"
-  type="submit"
-  (click)="handleSubmit($event)">
-  <mat-icon>
-    search
-  </mat-icon>
-  {{ submitTitle }}
-</button>
-
-<button 
-  *ngIf="displayResetButton"
-  mat-raised-button
-  color="accent"
-  type="reset"
-  title="{{resetTitle}}"
-  (click)="handleReset($event)">
-  <mat-icon>
-    close
-  </mat-icon>
-  {{ resetTitle }}
-</button>
-
-<div 
-  *ngIf="algoliaAttribution"
-  class="algolia-disclaimer">
-  <span class="mat-subheading-2">
-    powered by 
-  </span>
-  <img 
-    [src]="pathToAlgoliaImage" 
-    alt='algolia logo'>
 </div>
 

@@ -1,0 +1,19 @@
+<section>
+  
+  <tft-instantsearch [config]="searchConfig">
+  
+    <tft-search-box>
+    </tft-search-box>
+  
+    <tft-refinement-list [attributeName]="filterCategory" [title]="filterPlaceholder">
+    </tft-refinement-list>
+  
+    <tft-results [transformItems]="logItem">
+    </tft-results>
+
+    <tft-pagination [maxPages]="3">
+    </tft-pagination>
+  
+  </tft-instantsearch>
+
+</section>
