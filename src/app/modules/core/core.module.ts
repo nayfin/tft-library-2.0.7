@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { DesignModule } from '../design/design.module';
 
 // Components
@@ -15,7 +16,8 @@ const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
-    DesignModule
+    DesignModule,
+    RouterModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

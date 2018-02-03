@@ -1,3 +1,8 @@
-<p>
-  sidenav-navigation works!
-</p>
+<mat-nav-list>
+    <mat-list-item *ngFor="let link of links">
+       <a matLine [routerLink]="link.path">{{ link.title }}</a>
+       <button mat-icon-button (click)="showInfo(link)">
+          <mat-icon>info</mat-icon>
+       </button>
+    </mat-list-item>
+  </mat-nav-list>

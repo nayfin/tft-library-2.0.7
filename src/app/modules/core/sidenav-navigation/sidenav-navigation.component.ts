@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SidenavNavigationComponent implements OnInit {
 
-  @Input() links: { title: string, path: string, subtitle?: string };
+  @Input() links: { title: string, path: string, subtitle?: string, icon?: string };
 
   constructor() { }
 
