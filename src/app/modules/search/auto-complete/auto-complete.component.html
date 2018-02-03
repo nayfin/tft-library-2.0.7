@@ -1,7 +1,12 @@
 
-<form [formGroup]="formContainer">
+<form 
+  [formGroup]="formContainer"
+  fxFlex
+  fxLayoutAlign="center center"
+  fxLayoutGap='8px'>
 
-  <mat-form-field>
+  <mat-form-field
+    fxFlex>
     <input 
       matInput
       autocapitalize="off"
@@ -34,6 +39,12 @@
         </ng-template>
       </tft-results>
     </mat-autocomplete>
+    <mat-hint>
+      powered by 
+      <img 
+        src='../../../assets/images/logos/algolia.png' 
+        alt='algolia logo'>
+    </mat-hint>
   </mat-form-field>
 
   <button mat-raised-button
@@ -59,13 +70,6 @@
     {{ clearTitle }}
   </button>
 
-  <div class="algolia-disclaimer">
-    <span class="mat-subheading-2">
-      powered by 
-    </span>
-    <img 
-      src='../../../assets/images/logos/algolia.png' 
-      alt='algolia logo'>
-  </div>
+
 
 </form>

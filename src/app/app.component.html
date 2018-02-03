@@ -6,7 +6,10 @@
   </tft-header>
   <mat-sidenav-container fxFlex aria-live="main content">
     <mat-sidenav #sidenav>
-      <tft-sidenav-navigation [links]="linksToExamples"></tft-sidenav-navigation>
+      <tft-sidenav-navigation 
+        [links]="linksToExamples"
+        (itemClicked)="onLinkSelected($event)">
+      </tft-sidenav-navigation>
     </mat-sidenav>
     <mat-sidenav-content class="main-container">
       <router-outlet></router-outlet>

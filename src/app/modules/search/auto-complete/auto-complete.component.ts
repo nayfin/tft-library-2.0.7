@@ -22,15 +22,40 @@ export class AutoCompleteComponent extends BaseWidget {
 
   @Input() public placeholder = 'Search Item';
   @Input() public selectTitle = 'Select';
+  /*
+  **
+  ** IMPORTANT
+  ** autocomplete returns list of search results as user types
+  ** each of the result items is an object, 
+  ** if that object has a parameter for a url path to an image set imageUrlParam to the name of the parameter
+  ** e.g.
+  **
+  ** in your algolia index if you have an index of objects that look like this:
+  **
+  **    {id: "q3lk4fk", name: "itemName", imageUrl: "www.imagelibrary.com/the/location/of/my/image.png"}
+  **
+  ** listen for the results list 
+  **
+  **
+  */
   @Input() public imageUrlParam = 'image';
+  // Text insid of clear button
   @Input() public clearTitle = 'Clear';
+  // Do you want to display clear button?
   @Input() public displayClearButton = true;
+  // Do you want to display the select button. MAKE SURE selectToSubmit IS NOT SET TO FALSE!!
+  @Input() public displaySelectButton = true;
+  // Resets state of instantSearch's autocomplete mechanisms on submission of selected item
   @Input() public clearOnSubmit = true;
+  // Selecting item emits the submit event with the item's value
+  @Input() public selectToSubmit = true;
+
 
   @Input() public validators: Validators[] = [];
   // TODO: Define searchConfig class
 
   // Output events
+  @Output() change = new EventEmitter();
   @Output() select = new EventEmitter();
   @Output() reset = new EventEmitter();
   @Output() submit = new EventEmitter();
@@ -62,15 +87,19 @@ export class AutoCompleteComponent extends BaseWidget {
   }
 
   public handleChange(query: string) {
-    // this.change.emit(query);
-    this.state.refine(query);
+    this.change.emit(query);
+    console.log(query);
+    console.log("returned from this.state.refine(query);",this.state.refine(query));
   }
 
   public handleSelect(mouseEvent: MouseEvent, item: any) {
     // send submit event to parent component
+    event.preventDefault();
     this.select.emit({ mouseEvent, item } );
     this.selected = item;
-    event.preventDefault();
+    if ( this.selectToSubmit ) {
+      this.handleSubmit(mouseEvent);
+    }
   }
 
   public handleSubmit(mouseEvent: MouseEvent) {

@@ -8,16 +8,24 @@ import { InstantSearchConfig } from '../../search/instantsearch/instantsearch-in
 })
 export class AutocompleteExampleComponent implements OnInit {
 
-  autocompleteConfig: InstantSearchConfig = {
+ searchConfig: InstantSearchConfig = {
     appId: 'latency',
     apiKey: '3d9875e51fbd20c7754e65422f7ce5e1',
     indexName: 'bestbuy',
     urlSync: false
   };
-  
+  // TODO: reconfigure as Observable;
+  item: any = null;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  // Item needs to be <any> here... I'm not being lazy
+  onItemSelected( item: any ) {
+    this.item = item;
+    console.log('item', item);
   }
 
 }

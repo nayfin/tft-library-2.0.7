@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'tft-sidenav-navigation',
@@ -8,10 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SidenavNavigationComponent implements OnInit {
 
   @Input() links: { title: string, path: string, subtitle?: string, icon?: string };
+  @Output() itemClicked = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  // want to allow any data to pass through here
+  onItemClicked(item: any) {
+    this.itemClicked.emit(item);
   }
 
 }
