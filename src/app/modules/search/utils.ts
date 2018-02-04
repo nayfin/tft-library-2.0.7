@@ -1,3 +1,5 @@
+export const ALGOLIA_LOGO_URL = 'https://firebasestorage.googleapis.com/v0/b/bigharvest-1046.appspot.com/o/algolia.png?alt=media&token=d2c9f6c4-21f5-49d7-8f79-1206e38aa8bd'
+
 export function bem(widgetName: string) {
   const cx = function(element?: string, subElement?: string) {
     if (element) {

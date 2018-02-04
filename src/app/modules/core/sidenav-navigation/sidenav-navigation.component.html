@@ -1,8 +1,17 @@
 <mat-nav-list>
-    <mat-list-item *ngFor="let link of links">
-       <a matLine [routerLink]="link.path">{{ link.title }}</a>
-       <button mat-icon-button (click)="showInfo(link)">
-          <mat-icon>info</mat-icon>
-       </button>
-    </mat-list-item>
-  </mat-nav-list>
+  <mat-list-item 
+    *ngFor="let link of links"
+    [routerLink]="link.path"
+    (click)="onItemClicked(link)">
+    
+    <a matLine> 
+        {{ link.title }}
+      </a>
+      <mat-icon *ngIf="!!link.description"
+        [matTooltip]="link.description || 'Description coming soon!'">
+        info
+      </mat-icon>
+
+    
+  </mat-list-item>
+</mat-nav-list>

@@ -1,6 +1,11 @@
-<div fxFlexfill>
+<div 
+  fxFlex
+  fxLayoutAlign="center center"
+  fxFlexGap
+  fxLayoutGap='8px'>
 
-  <mat-form-field>
+  <mat-form-field
+    fxFlex>
     <input
       matInput
       autocapitalize="off"
@@ -14,6 +19,10 @@
       (input)="handleChange($event.target.value)"
       (focus)="focus.emit($event)"
       (blur)="blur.emit($event)"/>
+    <mat-hint
+      *ngIf="algoliaAttribution">
+      <tft-algolia-attribution></tft-algolia-attribution>
+    </mat-hint>
   </mat-form-field>
   
   <button mat-raised-button
@@ -39,16 +48,7 @@
     {{ resetTitle }}
   </button>
   
-  <div 
-    *ngIf="algoliaAttribution"
-    class="algolia-disclaimer">
-    <span class="mat-subheading-2">
-      powered by 
-    </span>
-    <img 
-      [src]="pathToAlgoliaImage" 
-      alt='algolia logo'>
-  </div>
+
 
 </div>
 

@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SidenavNavigationComponent implements OnInit {
 
-  @Input() links: { title: string, path: string, subtitle?: string, icon?: string };
+  @Input() links: { title: string, path: string, description?: string, subtitle?: string, icon?: string };
   @Output() itemClicked = new EventEmitter<any>();
 
   constructor() { }

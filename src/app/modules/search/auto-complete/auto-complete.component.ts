@@ -12,6 +12,7 @@ import { noop } from 'lodash-es';
 import { BaseWidget } from '../base-widget';
 import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ALGOLIA_LOGO_URL } from '../utils';
 
 @Component({
   selector: 'tft-auto-complete',
@@ -22,20 +23,24 @@ export class AutoCompleteComponent extends BaseWidget {
 
   @Input() public placeholder = 'Search Item';
   @Input() public selectTitle = 'Select';
+  @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
+  @Input() public algoliaAttribution = true;
+
   /*
   **
   ** IMPORTANT
   ** autocomplete returns list of search results as user types
-  ** each of the result items is an object, 
-  ** if that object has a parameter for a url path to an image set imageUrlParam to the name of the parameter
+  ** each of the result items is an object
+  ** if that object has a parameter for a url path to an image, then set imageUrlParam to the name of the parameter
   ** e.g.
   **
   ** in your algolia index if you have an index of objects that look like this:
   **
   **    {id: "q3lk4fk", name: "itemName", imageUrl: "www.imagelibrary.com/the/location/of/my/image.png"}
   **
-  ** listen for the results list 
+  ** then you would want to tft-autocomplete where to look
   **
+  **    <tft-autocomplete [imageUrlParam]="imageUrl"></tft-autocomplete>
   **
   */
   @Input() public imageUrlParam = 'image';
@@ -68,7 +73,8 @@ export class AutoCompleteComponent extends BaseWidget {
 
   formContainer: FormGroup;
 
-  public state = {
+  algoliaLogoPath = ALGOLIA_LOGO_URL;
+  public state: any = {
     query: '',
     refine: noop
   };
@@ -87,9 +93,10 @@ export class AutoCompleteComponent extends BaseWidget {
   }
 
   public handleChange(query: string) {
-    this.change.emit(query);
-    console.log(query);
-    console.log("returned from this.state.refine(query);",this.state.refine(query));
+    this.state.refine(query);
+
+    const hits = this.state.instantSearchInstance.helper.lastResults.hits;
+    this.change.emit({query, hits});
   }
 
   public handleSelect(mouseEvent: MouseEvent, item: any) {

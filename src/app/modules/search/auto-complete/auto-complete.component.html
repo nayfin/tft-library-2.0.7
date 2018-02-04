@@ -28,22 +28,20 @@
             (click)="handleSelect($event, hit)"
             [value]="hit.name">
             <img 
-            *ngIf="hit[imageUrlParam]"
-            [src]="hit[imageUrlParam]" 
-            style="vertical-align:middle;" 
-            aria-hidden 
-            height="25"/>
+              *ngIf="hit[imageUrlParam]"
+              [src]="hit[imageUrlParam]" 
+              style="vertical-align:middle;" 
+              aria-hidden 
+              height="25"/>
             <span> {{ hit.name }} </span>
           </mat-option>
           
         </ng-template>
       </tft-results>
     </mat-autocomplete>
-    <mat-hint>
-      powered by 
-      <img 
-        src='../../../assets/images/logos/algolia.png' 
-        alt='algolia logo'>
+    <mat-hint
+      *ngIf="algoliaAttribution">
+      <tft-algolia-attribution></tft-algolia-attribution>
     </mat-hint>
   </mat-form-field>
 

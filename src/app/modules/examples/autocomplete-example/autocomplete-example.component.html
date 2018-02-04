@@ -1,6 +1,7 @@
 <tft-instantsearch 
   [config]="searchConfig">
   <tft-auto-complete 
+    (change)="handleChange($event)"
     (submit)="onItemSelected($event)">
   </tft-auto-complete>
 </tft-instantsearch>

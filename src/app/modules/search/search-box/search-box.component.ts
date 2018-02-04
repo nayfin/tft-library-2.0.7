@@ -12,6 +12,8 @@ import { noop } from 'lodash-es';
 import { BaseWidget } from '../base-widget';
 import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 
+import { ALGOLIA_LOGO_URL } from '../utils';
+
 @Component({
   selector: 'tft-search-box',
   templateUrl: './search-box.component.html',
@@ -21,9 +23,7 @@ export class TftSearchBoxComponent extends BaseWidget {
   @Input() public placeholder = 'Search';
   @Input() public submitTitle = 'Submit';
   @Input() public resetTitle = 'Reset';
-  // TODO: Send file with library or set up cdn to dist
-  // For now the src code needs the image file in this path or in a path designated by user via input below
-  @Input() public pathToAlgoliaImage = '../../../assets/images/logos/algolia.png';
+  @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
   @Input() public searchAsYouType = true;
   @Input() public displayResetButton = false;
   @Input() public algoliaAttribution = true;

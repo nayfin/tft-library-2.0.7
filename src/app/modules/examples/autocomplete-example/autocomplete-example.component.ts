@@ -28,4 +28,7 @@ export class AutocompleteExampleComponent implements OnInit {
     console.log('item', item);
   }
 
+  handleChange(hits: any[]) {
+    console.log('handling hits', hits);
+  }
 }
