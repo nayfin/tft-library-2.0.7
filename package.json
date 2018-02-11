@@ -19,7 +19,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json",
-    "release": "scripts\\release.sh"
+    "release": "bash ./scripts/release.sh"
   },
   "private": false,
   "peerDependencies": {
