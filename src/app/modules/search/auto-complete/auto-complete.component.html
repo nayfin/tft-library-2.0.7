@@ -45,28 +45,56 @@
     </mat-hint>
   </mat-form-field>
 
-  <button mat-raised-button
-    color="primary"
-    type="submit"
-    (click)="handleSubmit($event)">
-    <mat-icon>
-      add
-    </mat-icon>
-    {{ selectTitle }}
-  </button>
+  <div
+    fxHide.lt-sm>
+    <button mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="handleSubmit($event)">
+      <mat-icon>
+        add
+      </mat-icon>
+      {{ selectTitle }}
+    </button>
+  
+    <button 
+      *ngIf="displayClearButton"
+      mat-raised-button
+      color="accent"
+      title="{{clearTitle}}"
+      type="button"
+      (click)="handleClear($event)">
+      <mat-icon>
+        close
+      </mat-icon>
+      {{ clearTitle }}
+    </button>
+  </div>
 
-  <button 
-    *ngIf="displayClearButton"
-    mat-raised-button
-    color="accent"
-    title="{{clearTitle}}"
-    type="button"
-    (click)="handleClear($event)">
-    <mat-icon>
-      close
-    </mat-icon>
-    {{ clearTitle }}
-  </button>
+  <div
+    fxHide.gt-xs>
+    <button mat-mini-fab
+      color="primary"
+      type="submit"
+      (click)="handleSubmit($event)"
+      matTooltip="Select item">
+      <mat-icon>
+        add
+      </mat-icon>
+    </button>
+
+    <button 
+      *ngIf="displayClearButton"
+      mat-mini-fab
+      color="accent"
+      type="button"
+      (click)="handleClear($event)"
+      matTooltip="Clear searchbox">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </div>
 
 
 

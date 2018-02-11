@@ -62,7 +62,6 @@ export class TftSearchBoxComponent extends BaseWidget {
   public handleSubmit(event: MouseEvent) {
     // send submit event to parent component
     this.submit.emit(event);
-
     event.preventDefault();
 
     if (!this.searchAsYouType) {

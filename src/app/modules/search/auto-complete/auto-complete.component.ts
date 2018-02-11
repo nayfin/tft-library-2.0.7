@@ -22,7 +22,7 @@ import { ALGOLIA_LOGO_URL } from '../utils';
 export class AutoCompleteComponent extends BaseWidget {
 
   @Input() public placeholder = 'Search Item';
-  @Input() public selectTitle = 'Select';
+  @Input() public selectTitle = 'SELECT';
   @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
   @Input() public algoliaAttribution = true;
 
@@ -45,7 +45,7 @@ export class AutoCompleteComponent extends BaseWidget {
   */
   @Input() public imageUrlParam = 'image';
   // Text insid of clear button
-  @Input() public clearTitle = 'Clear';
+  @Input() public clearTitle = 'CLEAR';
   // Do you want to display clear button?
   @Input() public displayClearButton = true;
   // Do you want to display the select button. MAKE SURE selectToSubmit IS NOT SET TO FALSE!!
@@ -53,7 +53,7 @@ export class AutoCompleteComponent extends BaseWidget {
   // Resets state of instantSearch's autocomplete mechanisms on submission of selected item
   @Input() public clearOnSubmit = true;
   // Selecting item emits the submit event with the item's value
-  @Input() public selectToSubmit = true;
+  @Input() public selectToSubmit = false;
 
 
   @Input() public validators: Validators[] = [];
@@ -102,6 +102,7 @@ export class AutoCompleteComponent extends BaseWidget {
   public handleSelect(mouseEvent: MouseEvent, item: any) {
     // send submit event to parent component
     event.preventDefault();
+    
     this.select.emit({ mouseEvent, item } );
     this.selected = item;
     if ( this.selectToSubmit ) {
