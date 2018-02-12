@@ -20,13 +20,17 @@
       (focus)="focus.emit($event)"
       (blur)="blur.emit($event)">
       
-    <mat-autocomplete #auto="matAutocomplete">
+    <mat-autocomplete 
+      (optionSelected)="handleSelect($event)"
+      [displayWith]="mapToName"
+      #auto="matAutocomplete">
       <tft-results>    
         <ng-template let-hits="hits">
+          <!-- (click)="handleSelect($event, hit)" -->
           <mat-option 
-            *ngFor="let hit of hits" 
-            (click)="handleSelect($event, hit)"
-            [value]="hit.name">
+            *ngFor="let hit of hits"  
+            [value]="hit">
+
             <img 
               *ngIf="hit[imageUrlParam]"
               [src]="hit[imageUrlParam]" 
@@ -47,7 +51,9 @@
 
   <div
     fxHide.lt-sm>
-    <button mat-raised-button
+    <button 
+      mat-raised-button
+      [disabled]="formContainer.invalid"
       color="primary"
       type="submit"
       (click)="handleSubmit($event)">
@@ -74,6 +80,7 @@
   <div
     fxHide.gt-xs>
     <button mat-mini-fab
+      [disabled]="formContainer.invalid"
       color="primary"
       type="submit"
       (click)="handleSubmit($event)"

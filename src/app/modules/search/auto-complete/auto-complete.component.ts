@@ -13,6 +13,7 @@ import { BaseWidget } from '../base-widget';
 import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ALGOLIA_LOGO_URL } from '../utils';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'tft-auto-complete',
@@ -21,7 +22,7 @@ import { ALGOLIA_LOGO_URL } from '../utils';
 })
 export class AutoCompleteComponent extends BaseWidget {
 
-  @Input() public placeholder = 'Search Item';
+  @Input() public placeholder = 'Type to search';
   @Input() public selectTitle = 'SELECT';
   @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
   @Input() public algoliaAttribution = true;
@@ -49,11 +50,11 @@ export class AutoCompleteComponent extends BaseWidget {
   // Do you want to display clear button?
   @Input() public displayClearButton = true;
   // Do you want to display the select button. MAKE SURE selectToSubmit IS NOT SET TO FALSE!!
-  @Input() public displaySelectButton = true;
+  // @Input() public displaySelectButton = true;
   // Resets state of instantSearch's autocomplete mechanisms on submission of selected item
   @Input() public clearOnSubmit = true;
   // Selecting item emits the submit event with the item's value
-  @Input() public selectToSubmit = false;
+  // @Input() public selectToSubmit = false;
 
 
   @Input() public validators: Validators[] = [];
@@ -79,6 +80,10 @@ export class AutoCompleteComponent extends BaseWidget {
     refine: noop
   };
 
+  get autocompleteControl() {
+    return this.formContainer.get('autocomplete');
+  }
+
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
     private fb: FormBuilder,
@@ -88,29 +93,35 @@ export class AutoCompleteComponent extends BaseWidget {
     this.createWidget(connectSearchBox);
 
     this.formContainer = this.fb.group({
-      'autocomplete': [null, this.validators]
+      'autocomplete': [null, [Validators.required, ...this.validators]]
     });
+
   }
 
-  public handleChange(query: string) {
+  public handleChange( query: string ) {
+    // this.formContainer.setErrors({'valueSelected': false});
+    console.log('handleChange query', query);
     this.state.refine(query);
-
-    const hits = this.state.instantSearchInstance.helper.lastResults.hits;
+    const hits = this.state.instantSearchInstance ? this.state.instantSearchInstance.helper.lastResults.hits : [];
     this.change.emit({query, hits});
   }
 
-  public handleSelect(mouseEvent: MouseEvent, item: any) {
+  public handleSelect( event: MatAutocompleteSelectedEvent ) {
     // send submit event to parent component
-    event.preventDefault();
+
+      // event.preventDefault();
+      const item = event.option.value;
+      this.select.emit({ item } );
+      this.selected = item;
+      // if ( this.selectToSubmit ) {
+      //   this.handleSubmit(mouseEvent);
+      // }
     
-    this.select.emit({ mouseEvent, item } );
-    this.selected = item;
-    if ( this.selectToSubmit ) {
-      this.handleSubmit(mouseEvent);
-    }
+    console.log("item", item );
+
   }
 
-  public handleSubmit(mouseEvent: MouseEvent) {
+  public handleSubmit(mouseEvent: MouseEvent | KeyboardEvent) {
     // send submit event to parent component with selected item
     event.preventDefault();
     this.submit.emit({ mouseEvent, item : this.selected } );
@@ -119,7 +130,7 @@ export class AutoCompleteComponent extends BaseWidget {
     }
   }
 
-  public handleClear(event: MouseEvent) {
+  public handleClear(event: MouseEvent | KeyboardEvent) {
     // send reset event to parent component
     this.reset.emit(event);
     // reset search
@@ -130,5 +141,10 @@ export class AutoCompleteComponent extends BaseWidget {
   clearValue() {
     this.formContainer.get('autocomplete').reset();
   }
+  // used to map selected items name to autocomplete input
+  mapToName(val) {
+    return val ? val.name : '';
+  }
+
 }
 
