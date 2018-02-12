@@ -80,10 +80,6 @@ export class AutoCompleteComponent extends BaseWidget {
     refine: noop
   };
 
-  get autocompleteControl() {
-    return this.formContainer.get('autocomplete');
-  }
-
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
     private fb: FormBuilder,
@@ -99,26 +95,16 @@ export class AutoCompleteComponent extends BaseWidget {
   }
 
   public handleChange( query: string ) {
-    // this.formContainer.setErrors({'valueSelected': false});
-    console.log('handleChange query', query);
+    this.formContainer.setErrors({'valueSelected': false});
     this.state.refine(query);
     const hits = this.state.instantSearchInstance ? this.state.instantSearchInstance.helper.lastResults.hits : [];
     this.change.emit({query, hits});
   }
 
   public handleSelect( event: MatAutocompleteSelectedEvent ) {
-    // send submit event to parent component
-
-      // event.preventDefault();
-      const item = event.option.value;
-      this.select.emit({ item } );
-      this.selected = item;
-      // if ( this.selectToSubmit ) {
-      //   this.handleSubmit(mouseEvent);
-      // }
-    
-    console.log("item", item );
-
+    const item = event.option.value;
+    this.select.emit({ item } );
+    this.selected = item;
   }
 
   public handleSubmit(mouseEvent: MouseEvent | KeyboardEvent) {
