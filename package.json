@@ -63,7 +63,6 @@
     "lodash-es": "^4.17.5",
     "nouislider": "^10.0.0",
     "querystring-es3": "^0.2.1",
-    "webpack": "^3.11.0",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
