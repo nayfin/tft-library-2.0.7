@@ -18,18 +18,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p package.json",
+    "packagr": "ng-packagr -p ng-package.json",
     "release": "bash ./scripts/release.sh"
-  },
-  "$schema": "./node_modules/ng-packagr/package.schema.json",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "public_api.ts",
-      "externals": {
-        "@angular/material": "ng.material",
-        "@angular/flex-layout": "ng.flex-layout"
-      }
-    }
   },
   "private": false,
   "peerDependencies": {
