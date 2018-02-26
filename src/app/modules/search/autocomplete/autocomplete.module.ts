@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DesignModule } from '../../design/design.module';
-import { AutoCompleteComponent } from './auto-complete.component';
+import { AutocompleteComponent } from './autocomplete.component';
 import { TftResultsModule } from '../results/results.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlgoliaAttributionModule } from '../algolia-attribution/algolia-attribution.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,10 +16,11 @@ import { AlgoliaAttributionModule } from '../algolia-attribution/algolia-attribu
     AlgoliaAttributionModule,
   ],
   declarations: [
-    AutoCompleteComponent
+    AutocompleteComponent
   ],
   exports: [
-    AutoCompleteComponent
+    AutocompleteComponent
   ]
 })
-export class TftAutoCompleteModule { }
+
+export class TftAutocompleteModule { }

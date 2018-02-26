@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyClPsiH6DFJc_XvltxqrhLeFRWVm3jUZoo',
+    authDomain: 'tft-library.firebaseapp.com',
+    databaseURL: 'https://tft-library.firebaseio.com',
+    projectId: 'tft-library',
+    storageBucket: 'tft-library.appspot.com',
+    messagingSenderId: '113394856035'
+  }
 };

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InstantSearchConfig } from '../../search/instantsearch/instantsearch-instance';
+import { InstantSearchConfig } from '../../modules/search/instantsearch/instantsearch-instance';
 
 @Component({
   selector: 'tft-search-box-example',
@@ -8,7 +8,7 @@ import { InstantSearchConfig } from '../../search/instantsearch/instantsearch-in
 })
 export class SearchBoxExampleComponent implements OnInit {
 
-  // A sample index provided by Algolia for testing 
+  // A sample index provided by Algolia for testing
   searchConfig: InstantSearchConfig = {
     apiKey: '6be0576ff61c053d5f9a3225e2a90f76',
     appId: 'latency',

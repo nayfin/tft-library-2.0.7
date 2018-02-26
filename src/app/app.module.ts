@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { AppComponent } from './app.component';
-import { TftSearchModule } from './modules/search/index';
-import { CoreModule } from './modules/core/core.module';
 import { DesignModule } from './modules/design/design.module';
 import { AppRoutingModule } from './app-routing.module';
-// Components
-import { SearchBoxExampleComponent } from './modules/examples/search-box-example/search-box-example.component';
-import { AutocompleteExampleComponent } from './modules/examples/autocomplete-example/autocomplete-example.component';
+import { WidgetsModule } from './modules/widgets/widgets.module';
+import { CoreModule } from './modules/core/core.module';
+import { TftSearchModule } from './modules/search/index';
+import { ExamplesModule } from './examples/examples.module';
+
+// config
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchBoxExampleComponent,
-    AutocompleteExampleComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,11 @@ import { AutocompleteExampleComponent } from './modules/examples/autocomplete-ex
     DesignModule,
     TftSearchModule.forRoot(),
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    AngularFirestoreModule,
+    WidgetsModule,
+    ExamplesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

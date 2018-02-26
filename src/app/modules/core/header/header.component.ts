@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
- 
+
   onMenuClicked() {
     this.menuClicked.emit();
   }

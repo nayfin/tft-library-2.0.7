@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { InstantSearchConfig } from '../../search/instantsearch/instantsearch-instance';
+import { InstantSearchConfig } from '../../modules/search/instantsearch/instantsearch-instance';
 
 @Component({
-  selector: 'tft-autocomplete-example',
-  templateUrl: './autocomplete-example.component.html',
-  styleUrls: ['./autocomplete-example.component.css']
+  selector: 'tft-autocomplete-refinement-list-example',
+  templateUrl: './autocomplete-refinement-list-example.component.html',
+  styleUrls: ['./autocomplete-refinement-list-example.component.css']
 })
-export class AutocompleteExampleComponent implements OnInit {
+export class AutocompleteRefinementListExampleComponent implements OnInit {
 
- searchConfig: InstantSearchConfig = {
+  searchConfig: InstantSearchConfig = {
     appId: 'latency',
     apiKey: '3d9875e51fbd20c7754e65422f7ce5e1',
     indexName: 'bestbuy',
     urlSync: false
   };
+
   // TODO: reconfigure as Observable;
   item: any = null;
 

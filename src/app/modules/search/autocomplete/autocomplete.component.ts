@@ -16,11 +16,11 @@ import { ALGOLIA_LOGO_URL } from '../utils';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
-  selector: 'tft-auto-complete',
-  templateUrl: './auto-complete.component.html',
-  styleUrls: ['./auto-complete.component.scss']
+  selector: 'tft-autocomplete',
+  templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.scss']
 })
-export class AutoCompleteComponent extends BaseWidget {
+export class AutocompleteComponent extends BaseWidget {
 
   @Input() public placeholder = 'Type to search';
   @Input() public selectTitle = 'SELECT';

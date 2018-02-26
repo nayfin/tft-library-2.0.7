@@ -1,0 +1,20 @@
+<tft-instantsearch 
+  [config]="searchConfig">
+  <tft-autocomplete 
+    (change)="handleChange($event)"
+    (submit)="onItemSelected($event)">
+  </tft-autocomplete>
+</tft-instantsearch>
+
+<mat-card>
+  <pre *ngIf="!!item; else directUser">
+    {{
+      item | json
+    }}
+  </pre>
+  <ng-template #directUser>
+    <mat-card-title>
+      Select item to activate (submit) event in autocomplete component
+    </mat-card-title>
+  </ng-template>
+</mat-card>
