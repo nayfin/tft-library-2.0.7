@@ -23,11 +23,6 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 export class AutocompleteRefinementListComponent extends BaseWidget {
 
-  @Input() public placeholder = 'Type to search';
-  @Input() public selectTitle = 'SELECT';
-  @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
-  @Input() public algoliaAttribution = true;
-
   /*
   **
   ** IMPORTANT
@@ -46,17 +41,24 @@ export class AutocompleteRefinementListComponent extends BaseWidget {
   **
   */
   @Input() public imageUrlParam = 'image';
-  // Text insid of clear button
+  @Input() public placeholder = 'Type to search';
+  @Input() public selectTitle = 'SELECT';
+  @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
+  @Input() public algoliaAttribution = true;
+  // Text inside of clear button
   @Input() public clearTitle = 'CLEAR';
   // Do you want to display clear button?
-  @Input() public displayClearButton = true;
+  @Input() public displayClearButton = false;
+  @Input() public displaySubmitChipsButton = false;
   // Do you want to display the select button. MAKE SURE selectToSubmit IS NOT SET TO FALSE!!
   // @Input() public displaySelectButton = true;
   // Resets state of instantSearch's autocomplete mechanisms on submission of selected item
   @Input() public clearOnSubmit = true;
   // Selecting item emits the submit event with the item's value
   // @Input() public selectToSubmit = false;
-
+  @Input() areChipsRemovable = true;
+  @Input() addChipOnBlur = true;
+  @Input() chipSelectable = true;
 
   @Input() public validators: Validators[] = [];
   // TODO: Define searchConfig class
@@ -71,11 +73,12 @@ export class AutocompleteRefinementListComponent extends BaseWidget {
   // @Output() change = new EventEmitter();
 
   // data of item selected from autocomplete dropdown
-  selected: any;
+  selected: any[] = [];
 
   formContainer: FormGroup;
 
   algoliaLogoPath = ALGOLIA_LOGO_URL;
+
   public state: any = {
     query: '',
     refine: noop
@@ -102,13 +105,14 @@ export class AutocompleteRefinementListComponent extends BaseWidget {
     this.change.emit({query, hits});
   }
 
-  public handleSelect( event: MatAutocompleteSelectedEvent ) {
+  public handleSelect( event ) {
+    console.log('handleSelect', event);
     const item = event.option.value;
     this.select.emit({ item } );
-    this.selected = item;
+    this.addChipToList(item);
   }
 
-  public handleSubmit(mouseEvent: MouseEvent | KeyboardEvent) {
+  public handleChipsSubmit(mouseEvent: MouseEvent | KeyboardEvent) {
     // send submit event to parent component with selected item
     event.preventDefault();
     this.submit.emit({ mouseEvent, item : this.selected } );
@@ -125,6 +129,19 @@ export class AutocompleteRefinementListComponent extends BaseWidget {
     this.clearValue();
   }
 
+  addChipToList(chip) {
+    this.selected.push(chip);
+  }
+
+  removeChip(chip: any): void {
+    // Find key of object in array
+    const index = this.selected.indexOf(chip);
+    // If key exists
+    if (index >= 0) {
+      // Remove key from chips array
+      this.selected.splice(index, 1);
+    }
+  }
   clearValue() {
     this.formContainer.get('autocomplete').reset();
   }

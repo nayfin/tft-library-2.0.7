@@ -1,0 +1,27 @@
+<form
+  (submit)="handleSubmit($event)"
+  novalidate>
+  <input
+    autocapitalize="off"
+    autocorrect="off"
+    placeholder="{{searchPlaceholder}}"
+    role="textbox"
+    spellcheck="false"
+    type="text"
+    [value]="searchQuery"
+    (input)="handleChange($event.target.value)"/>
+</form>
+
+<mat-form-field>
+  <mat-select 
+    [placeholder]="title" 
+    multiple="true"
+    (selectionChange)="refine($event)">
+    <mat-option 
+      *ngFor="let item of items" 
+      [value]="item">
+      {{ item.label | titlecase }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+

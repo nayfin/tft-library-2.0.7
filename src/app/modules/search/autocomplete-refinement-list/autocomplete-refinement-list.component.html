@@ -1,108 +1,119 @@
-
+CHIPS
 <form 
-[formGroup]="formContainer"
-fxFlex
-fxLayoutAlign="center center"
-fxLayoutGap='8px'>
+  [formGroup]="formContainer"
+  fxFlex
+  fxLayoutAlign="center center"
+  fxLayoutGap='8px'>
 
-<mat-form-field
-  fxFlex>
-  <input 
-    matInput
-    autocapitalize="off"
-    autocorrect="off"
-    spellcheck="false" 
-    formControlName="autocomplete"
-    [placeholder]="placeholder"
-    [matAutocomplete]="auto"
-    [value]="state.query"
-    (input)="handleChange($event.target.value)"
-    (focus)="focus.emit($event)"
-    (blur)="blur.emit($event)">
+  <mat-form-field
+    fxFlex>
+    <mat-chip-list #chipList>
+			<mat-chip 
+        *ngFor="let chip of selected" 
+        [selectable]="chipSelectable" 
+        [removable]="areChipsRemovable" 
+        (remove)="removeChip(chip)">
+				{{chip.name}}
+				<mat-icon 
+          matChipRemove 
+          *ngIf="areChipsRemovable">
+          cancel
+        </mat-icon>
+			</mat-chip>
+
+      <input 
+        formControlName="autocomplete" 
+        [placeholder]="placeholder"        
+        [matChipInputFor]="chipList" 
+        [matAutocomplete]="auto"            
+        [matChipInputAddOnBlur]="addChipOnBlur"
+        matInput
+        [value]="state.query"
+        (input)="handleChange($event.target.value)"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false" 
+        #chipInput/>
+		</mat-chip-list>
+		<mat-autocomplete 
+      #auto="matAutocomplete"
+      (optionSelected)="handleSelect($event)"
+      [displayWith]="mapToName">
+
+      <tft-results>    
+        <ng-template let-hits="hits">
+          <!-- (click)="handleSelect($event, hit)" -->
+          <mat-option 
+            *ngFor="let hit of hits"  
+            [value]="hit">
+
+            <img 
+              *ngIf="hit[imageUrlParam]"
+              [src]="hit[imageUrlParam]" 
+              style="vertical-align:middle;" 
+              aria-hidden 
+              height="25"/>
+            <span> {{ hit.name }} </span>
+          </mat-option>
+          
+        </ng-template>
+      </tft-results>
+    </mat-autocomplete>
     
-  <mat-autocomplete 
-    (optionSelected)="handleSelect($event)"
-    [displayWith]="mapToName"
-    #auto="matAutocomplete">
-    <tft-results>    
-      <ng-template let-hits="hits">
-        <!-- (click)="handleSelect($event, hit)" -->
-        <mat-option 
-          *ngFor="let hit of hits"  
-          [value]="hit">
+  </mat-form-field>
 
-          <img 
-            *ngIf="hit[imageUrlParam]"
-            [src]="hit[imageUrlParam]" 
-            style="vertical-align:middle;" 
-            aria-hidden 
-            height="25"/>
-          <span> {{ hit.name }} </span>
-        </mat-option>
-        
-      </ng-template>
-    </tft-results>
-  </mat-autocomplete>
-  <mat-hint
-    *ngIf="algoliaAttribution">
-    <!-- <tft-algolia-attribution></tft-algolia-attribution> -->
-  </mat-hint>
-</mat-form-field>
+  <div
+    fxHide.lt-sm>
+    <button 
+      mat-raised-button
+      [disabled]="formContainer.invalid"
+      color="primary"
+      type="submit"
+      (click)="handleChipsSubmit($event)">
+      <mat-icon>
+        add
+      </mat-icon>
+      {{ selectTitle }}
+    </button>
 
-<div
-  fxHide.lt-sm>
-  <button 
-    mat-raised-button
-    [disabled]="formContainer.invalid"
-    color="primary"
-    type="submit"
-    (click)="handleSubmit($event)">
-    <mat-icon>
-      add
-    </mat-icon>
-    {{ selectTitle }}
-  </button>
+    <button 
+      *ngIf="displayClearButton"
+      mat-raised-button
+      color="accent"
+      title="{{clearTitle}}"
+      type="button"
+      (click)="handleClear($event)">
+      <mat-icon>
+        close
+      </mat-icon>
+      {{ clearTitle }}
+    </button>
+  </div>
 
-  <button 
-    *ngIf="displayClearButton"
-    mat-raised-button
-    color="accent"
-    title="{{clearTitle}}"
-    type="button"
-    (click)="handleClear($event)">
-    <mat-icon>
-      close
-    </mat-icon>
-    {{ clearTitle }}
-  </button>
-</div>
+  <div
+    fxHide.gt-xs>
+    <button mat-mini-fab
+      [disabled]="formContainer.invalid"
+      color="primary"
+      type="submit"
+      (click)="handleChipsSubmit($event)"
+      matTooltip="Select item">
+      <mat-icon>
+        add
+      </mat-icon>
+    </button>
 
-<div
-  fxHide.gt-xs>
-  <button mat-mini-fab
-    [disabled]="formContainer.invalid"
-    color="primary"
-    type="submit"
-    (click)="handleSubmit($event)"
-    matTooltip="Select item">
-    <mat-icon>
-      add
-    </mat-icon>
-  </button>
-
-  <button 
-    *ngIf="displayClearButton"
-    mat-mini-fab
-    color="accent"
-    type="button"
-    (click)="handleClear($event)"
-    matTooltip="Clear searchbox">
-    <mat-icon>
-      close
-    </mat-icon>
-  </button>
-</div>
-
-
+    <button 
+      *ngIf="displayClearButton"
+      mat-mini-fab
+      color="accent"
+      type="button"
+      (click)="handleClear($event)"
+      matTooltip="Clear searchbox">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </div>
 
 </form>

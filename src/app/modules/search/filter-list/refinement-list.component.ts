@@ -1,21 +1,20 @@
 import { Component, Input, Inject, OnInit, AfterContentChecked, ViewChild, PLATFORM_ID } from '@angular/core';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import { noop, isFunction } from 'lodash-es';
-import { connectSearchBox } from 'instantsearch.js/es/connectors';
 
 import { BaseWidget } from '../base-widget';
 import { TftInstantSearchInstance } from '../instantsearch/instantsearch-instance';
-import { parseNumberInput, ALGOLIA_LOGO_URL } from '../utils';
-import { MatSelect, MatSelectChange } from '@angular/material';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { parseNumberInput } from '../utils';
+import { MatSelect } from '@angular/material';
 
 export interface RefinementListState {
   canRefine: boolean;
-  // canToggleShowMore: boolean;
+  canToggleShowMore: boolean;
   createURL: Function;
-  // isShowingMore: boolean;
+  isShowingMore: boolean;
   items: {}[];
   refine: Function;
+  toggleShowMore: Function;
   searchForItems: Function;
   isFormSearch: boolean;
 }
@@ -33,24 +32,12 @@ export interface RefinementListItem {
 export class TftRefinementListComponent extends BaseWidget implements OnInit, AfterContentChecked {
   // render options
   @Input() public title: string | null = null;
+  @Input() public showMoreLabel = 'Show more';
+  @Input() public showLessLabel = 'Show less';
   @Input() public transformItems?: Function;
+  @Input() public withSearchBox = true;
+  @Input() public searchPlaceholder = 'Search here...';
 
-  @Input() public imageUrlParam = 'image';
-  @Input() public placeholder = 'Type to search';
-  @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
-  @Input() public validators: Validators[] = [];
-  // Text inside of clear button
-  @Input() public displaySubmitChipsButton = false;
-  @Input() public selectTitle = 'SELECT';
-  // Text inside of clear button
-  @Input() public displayClearButton = false;
-  @Input() public clearTitle = 'CLEAR';
-  // Resets state of instantSearch's autocomplete mechanisms on submission of selected item
-  @Input() public clearOnSubmit = true;
-  // Selecting item emits the submit event with the item's value
-  @Input() areChipsRemovable = true;
-  @Input() addChipOnBlur = true;
-  @Input() chipSelectable = true;
   // connectors options
   @Input() public attributeName: string;
   @Input() public operator: 'or' | 'and' = 'or';
@@ -62,32 +49,24 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
   // inner state
   searchQuery = '';
 
-  selected = [];
-
-  formContainer: FormGroup;
-
   public state: RefinementListState = {
     canRefine: false,
-    // canToggleShowMore: false,
+    canToggleShowMore: false,
     createURL: noop,
-    // isShowingMore: false,
+    isShowingMore: false,
     items: [],
     refine: noop,
+    toggleShowMore: noop,
     searchForItems: noop,
     isFormSearch: false
   };
 
   constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
-    fb: FormBuilder,
     searchInstance: TftInstantSearchInstance,
     // private cdr: ChangeDetectorRef,
   ) {
     super(searchInstance, 'RefinementList');
-    this.createWidget(connectSearchBox);
-    this.formContainer = fb.group({
-      'autocomplete': [null, [Validators.required, ...this.validators]]
-    });
   }
 
   get items() {
@@ -105,25 +84,26 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
       escapeFacetValues: true
     });
     super.ngOnInit();
-    
   }
 
   ngAfterContentChecked() {
-
-    this.selected = this.state.items.length > 0
-                  ? this.state.items.filter((item: RefinementListItem) => item.isRefined)
-                  : [];
-
+    // checks state for selected items i.e. isRefined
+    // checks the boxes of the selected items in material dropdown by setting its value to an array of the values else an empty array
+    this.groupsSelect.value = this.state.items.length > 0
+      ? this.state.items.filter((val: RefinementListItem) => val.isRefined ).map((option: RefinementListItem) => option.value )
+      : [];
   }
 
   public refine(
-    item: RefinementListItem,
+    event: MouseEvent,
+    item: RefinementListItem
   ) {
- 
-    // const item = event;
+    event.preventDefault();
+    event.stopPropagation();
     if (this.state.canRefine) {
       // update UI directly, it will update the checkbox state
       item.isRefined = !item.isRefined;
+
       // refine through Algolia API
       this.state.refine(item.value);
     }
@@ -137,17 +117,5 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
   handleChange(value: string) {
     this.searchQuery = value;
     this.state.searchForItems(value);
-  }
-
-  handleSelect(event: any) {
-    console.log('handleClick event:', event);
-    this.refine(event.option.value);
-    this.searchQuery = '';
-  }
-  removeChip(chip) {
-    this.refine(chip);
-  }
-  mapToName(val) {
-    return val ? val.name : '';
   }
 }
