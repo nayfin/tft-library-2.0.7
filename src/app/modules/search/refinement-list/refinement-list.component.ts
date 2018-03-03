@@ -1,4 +1,4 @@
-import { Component, Input, Inject, OnInit, AfterContentChecked, ViewChild, PLATFORM_ID } from '@angular/core';
+import { Component, Input, Inject, OnInit, ViewChild, PLATFORM_ID } from '@angular/core';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import { noop, isFunction } from 'lodash-es';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
@@ -30,14 +30,23 @@ export interface RefinementListItem {
   templateUrl: 'refinement-list.component.html',
   styleUrls: ['refinement-list.component.scss'],
 })
-export class TftRefinementListComponent extends BaseWidget implements OnInit, AfterContentChecked {
-  // render options
+export class TftRefinementListComponent extends BaseWidget implements OnInit {
+  // TODO: Title of chip list if needed
   @Input() public title: string | null = null;
+  // attribute of search index to search and filter on
+  @Input() public attributeName: string;
+  // or: results include any of the filter items | and: results include all of the filter items
+  @Input() public operator: 'or' | 'and' = 'or';
+  // callback function to filter the attribute items as they are returned
   @Input() public transformItems?: Function;
-
+  // name of parameter on item holding image url path
+  // e.g. if the item has a path to an image and it is located on item.imageUrl enter 'imageUrl'
   @Input() public imageUrlParam = 'image';
+  // placeholder for chiplist
   @Input() public placeholder = 'Type to search';
+  // path to algolia logo file, defaults to image served by firebase
   @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
+  // any validators to pass into searchbox
   @Input() public validators: Validators[] = [];
   // Text inside of clear button
   @Input() public displaySubmitChipsButton = false;
@@ -49,21 +58,23 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
   @Input() public clearOnSubmit = true;
   // Selecting item emits the submit event with the item's value
   @Input() areChipsRemovable = true;
+  // Tab to select chip
   @Input() addChipOnBlur = true;
+  // TODO: should we keep this around? What can it be used for?
   @Input() chipSelectable = true;
-  // connectors options
-  @Input() public attributeName: string;
-  @Input() public operator: 'or' | 'and' = 'or';
+
+  // TODO: where is this limiting?
   @Input() public limitMin: number | string = 10;
   @Input() public limitMax: number | string;
+  // TODO: what options do we get with sortBy?
   @Input() public sortBy: string[] | ((item: object) => number);
 
-  @ViewChild(MatSelect) groupsSelect: MatSelect;
+  // @ViewChild(MatSelect) groupsSelect: MatSelect;
   // inner state
   searchQuery = '';
-
-  selected = [];
-
+  chips = [];
+  // selected = [];
+  // remaining = [];
   formContainer: FormGroup;
 
   public state: RefinementListState = {
@@ -95,7 +106,12 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
       ? this.transformItems(this.state.items)
       : this.state.items;
   }
-
+  get selectedItems() {
+    return this.items.filter( item => item.isRefined );
+  }
+  get remainingItems() {
+    return this.items.filter( item => !this.selectedItems.includes(item) );
+  }
   ngOnInit() {
     this.createWidget(connectRefinementList, {
       limit: parseNumberInput(this.limitMin),
@@ -105,22 +121,11 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
       escapeFacetValues: true
     });
     super.ngOnInit();
-    
-  }
-
-  ngAfterContentChecked() {
-
-    this.selected = this.state.items.length > 0
-                  ? this.state.items.filter((item: RefinementListItem) => item.isRefined)
-                  : [];
-
   }
 
   public refine(
     item: RefinementListItem,
   ) {
- 
-    // const item = event;
     if (this.state.canRefine) {
       // update UI directly, it will update the checkbox state
       item.isRefined = !item.isRefined;
@@ -140,12 +145,16 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit, Af
   }
 
   handleSelect(event: any) {
-    console.log('handleClick event:', event);
     this.refine(event.option.value);
+    this.chips.push(event.option.value);
+    console.log('chips pushed:', this.chips);
     this.searchQuery = '';
+    // this.formContainer.get('autocomplete').reset();
   }
+
   removeChip(chip) {
     this.refine(chip);
+    this.chips.splice(this.chips.indexOf(chip), 1);
   }
   mapToName(val) {
     return val ? val.name : '';

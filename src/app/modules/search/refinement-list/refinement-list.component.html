@@ -9,7 +9,7 @@
     fxFlex>
     <mat-chip-list #chipList>
 			<mat-chip 
-        *ngFor="let chip of selected" 
+        *ngFor="let chip of chips" 
         [selectable]="chipSelectable" 
         [removable]="areChipsRemovable" 
         (remove)="removeChip(chip)">
@@ -44,7 +44,7 @@
       [displayWith]="mapToName">
       <!-- (click)="handleSelect($event, item)" -->
       <mat-option 
-        *ngFor="let item of items"  
+        *ngFor="let item of remainingItems"  
         [value]="item">
 
         <img 
