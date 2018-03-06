@@ -16,7 +16,8 @@ export class AutocompleteExampleComponent implements OnInit {
   };
   // TODO: reconfigure as Observable;
   item: any = null;
-
+  
+  filterCategory = 'brand';
   constructor() { }
 
   ngOnInit() {

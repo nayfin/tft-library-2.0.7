@@ -3,6 +3,7 @@ import { InstantSearchConfig } from './modules/search/instantsearch/instantsearc
 import { MatSidenav } from '@angular/material';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
@@ -23,11 +24,11 @@ export class AppComponent {
       path: 'autocomplete',
       description: `Very basic demonstration of autocomplete component.`
     },
-    {
-      title: 'Autocomplete Refinement List',
-      path: 'autocomplete-refinement-list',
-      description: `Very basic demonstration of autocomplete refinement list component.`
-    },
+    // {
+    //   title: 'Autocomplete Refinement List',
+    //   path: 'autocomplete-refinement-list',
+    //   description: `Very basic demonstration of autocomplete refinement list component.`
+    // },
   ];
 
   onLinkSelected(item: any) {

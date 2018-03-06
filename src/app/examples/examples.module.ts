@@ -5,7 +5,7 @@ import { AutocompleteExampleComponent } from './autocomplete-example/autocomplet
 import { TftSearchModule } from '../modules/search';
 import { DesignModule } from '../modules/design';
 // tslint:disable-next-line:max-line-length
-import { AutocompleteRefinementListExampleComponent } from './autocomplete-refinement-list-example/autocomplete-refinement-list-example.component';
+// import { AutocompleteRefinementListExampleComponent } from './autocomplete-refinement-list-example/autocomplete-refinement-list-example.component';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { AutocompleteRefinementListExampleComponent } from './autocomplete-refin
   declarations: [
     SearchBoxExampleComponent,
     AutocompleteExampleComponent,
-    AutocompleteRefinementListExampleComponent,
+    // AutocompleteRefinementListExampleComponent,
   ],
   exports: [
     SearchBoxExampleComponent,

@@ -7,14 +7,14 @@ import { TftRefinementListComponent } from './refinement-list.component';
 import { DesignModule } from '../../design/design.module';
 
 @NgModule({
-  declarations: [TftRefinementListComponent],
-  entryComponents: [TftRefinementListComponent],
-  exports: [TftRefinementListComponent],
   imports: [
     FormsModule,
     CommonModule,
     DesignModule,
     TftHighlightModule
-  ]
+  ],
+  declarations: [TftRefinementListComponent],
+  entryComponents: [TftRefinementListComponent],
+  exports: [TftRefinementListComponent],
 })
 export class TftRefinementListModule {}

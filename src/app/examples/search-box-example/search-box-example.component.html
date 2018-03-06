@@ -5,9 +5,16 @@
     <tft-search-box>
     </tft-search-box>
   
-    <tft-refinement-list [attributeName]="filterCategory" [title]="filterPlaceholder">
+    <tft-refinement-list 
+      [attributeName]="filterCategory" 
+      [title]="filterPlaceholder">
     </tft-refinement-list>
   
+    <tft-filter-list 
+      [attributeName]="filterCategory" 
+      [title]="filterPlaceholder">
+    </tft-filter-list>
+
     <tft-results [transformItems]="logItem">
     </tft-results>
 

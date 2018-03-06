@@ -10,7 +10,7 @@ import { TftRefinementListModule } from './refinement-list/refinement-list.modul
 import { TftPaginationModule } from './pagination/pagination.module';
 import { TftResultsPerPageModule } from './results-per-page/results-per-page.module';
 import { TftAutocompleteModule } from './autocomplete/autocomplete.module';
-import { TftAutocompleteRefinementListModule } from './autocomplete-refinement-list/autocomplete-refinement-list.module';
+import { TftFilterListModule } from './filter-list/filter-list.module';
 
 // import { NgAisInfiniteResultsModule } from './infinite-results/infinite-results.module';
 // import { NgAisBreadcrumbModule } from './breadcrumb/breadcrumb.module';
@@ -45,7 +45,7 @@ const TFT_SEARCH_MODULES = [
   TftSortByModule,
   TftRefinementListModule,
   TftAutocompleteModule,
-  TftAutocompleteRefinementListModule,
+  TftFilterListModule,
 ];
 
 @NgModule({
