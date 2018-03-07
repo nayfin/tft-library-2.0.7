@@ -120,7 +120,7 @@ export class FilterListComponent extends BaseWidget implements OnInit, AfterCont
     }
 
     handleKeyup(event: KeyboardEvent) {
-      console.log('handleKeyup', event);
+      // console.log('handleKeyup', event);
     }
   }
 
