@@ -147,7 +147,6 @@ export class TftRefinementListComponent extends BaseWidget implements OnInit {
   handleSelect(event: any) {
     this.refine(event.option.value);
     this.chips.push(event.option.value);
-    console.log('chips pushed:', this.chips);
     this.searchQuery = '';
     // this.formContainer.get('autocomplete').reset();
   }

@@ -32,10 +32,10 @@ export class FilterListComponent extends BaseWidget implements OnInit, AfterCont
 
     // render options
     @Input() public title: string | null = null;
-    @Input() public showMoreLabel = 'Show more';
-    @Input() public showLessLabel = 'Show less';
+    // @Input() public showMoreLabel = 'Show more';
+    // @Input() public showLessLabel = 'Show less';
     @Input() public transformItems?: Function;
-    @Input() public withSearchBox = true;
+    // @Input() public withSearchBox = false;
     @Input() public searchPlaceholder = 'Search here...';
 
     // connectors options
