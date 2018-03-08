@@ -1,14 +1,13 @@
 <form
   [formGroup]="formContainer"
-  (submit)="handleSubmit($event)"
-  fxFlex
-  fxLayoutAlign="center center"
-  fxLayoutGap='8px'>
+  (submit)="handleSubmit($event)">
    
   <mat-form-field
     fxFlex>
-    <mat-chip-list #chipList>
-			<mat-chip 
+    <mat-chip-list 
+      #chipList>
+      <mat-chip 
+        class="refinement-chip"
         *ngFor="let chip of chips" 
         [selectable]="chipSelectable" 
         [removable]="areChipsRemovable" 
@@ -37,44 +36,26 @@
         autocorrect="off"
         spellcheck="false" 
         #chipInput/>
-		</mat-chip-list>
-		<mat-autocomplete 
-      #auto="matAutocomplete"
-      (optionSelected)="handleSelect($event)"
-      [displayWith]="mapToName">
-      <!-- (click)="handleSelect($event, item)" -->
-      <mat-option 
-        *ngFor="let item of remainingItems"  
-        [value]="item">
-
-        <img 
-          *ngIf="item[imageUrlParam]"
-          [src]="item[imageUrlParam]" 
-          style="vertical-align:middle;" 
-          aria-hidden 
-          height="25"/>
-        <span> {{ item.label }} </span>
-      </mat-option>
-          
-    </mat-autocomplete>
+      </mat-chip-list>
+      <mat-autocomplete 
+        #auto="matAutocomplete"
+        (optionSelected)="handleSelect($event)"
+        [displayWith]="mapToName">
+    
+        <mat-option 
+          *ngFor="let item of remainingItems"  
+          [value]="item">
+    
+          <img 
+            *ngIf="item[imageUrlParam]"
+            [src]="item[imageUrlParam]" 
+            style="vertical-align:middle;" 
+            aria-hidden 
+            height="25"/>
+          {{ item.label }}
+        </mat-option>
+      </mat-autocomplete>
+    
     
   </mat-form-field>
 </form>
-
-
-
-<!-- 
-<mat-form-field>
-  <mat-select 
-    [placeholder]="title" 
-    multiple="true"
-    (selectionChange)="refine($event)">
-    <mat-option 
-      *ngFor="let item of items" 
-      [value]="item">
-      {{ item.label | titlecase }}
-    </mat-option>
-  </mat-select>
-</mat-form-field> 
--->
-
