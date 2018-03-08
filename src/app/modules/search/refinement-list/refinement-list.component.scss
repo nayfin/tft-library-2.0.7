@@ -2,7 +2,7 @@
 tft-highlight {
   padding-left: 8px;
 }
-// 
-mat-chip-list {
-  margin-left: -16px;
+
+.mat-chip:not(.mat-basic-chip), .mat-chip:not(.mat-basic-chip)+.mat-chip:not(.mat-basic-chip) {
+  margin: 0 0 8px 8px;
 }

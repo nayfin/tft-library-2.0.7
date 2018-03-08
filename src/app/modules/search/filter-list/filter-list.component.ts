@@ -41,7 +41,7 @@ export class FilterListComponent extends BaseWidget implements OnInit, AfterCont
     // connectors options
     @Input() public attributeName: string;
     @Input() public operator: 'or' | 'and' = 'or';
-    @Input() public limitMin: number | string = 10;
+    @Input() public limitMin: number | string = 20;
     @Input() public limitMax: number | string;
     @Input() public sortBy: string[] | ((item: object) => number);
 
