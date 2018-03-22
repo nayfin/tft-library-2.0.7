@@ -52,7 +52,7 @@
   <div
     fxHide.lt-sm>
     <button
-      *ngIf="displaySubmitButton" 
+      *ngIf="displaySelectButton" 
       mat-raised-button
       [disabled]="formContainer.invalid"
       color="primary"
@@ -81,7 +81,7 @@
   <div
     fxHide.gt-xs>
     <button mat-mini-fab
-      *ngIf="displaySubmitButton"
+      *ngIf="displaySelectButton"
       [disabled]="formContainer.invalid"
       color="primary"
       type="submit"
