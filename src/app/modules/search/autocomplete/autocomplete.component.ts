@@ -49,9 +49,9 @@ export class AutocompleteComponent extends BaseWidget {
   // Text insid of clear button
   @Input() public clearTitle = 'CLEAR';
   // Do you want to display clear button?
-  @Input() public displayClearButton = true;
+  @Input() public displayClearButton = false;
   // Do you want to display the select button. MAKE SURE selectToSubmit IS NOT SET TO FALSE!!
-  @Input() public displaySelectButton = true;
+  @Input() public displaySelectButton = false;
   // Resets state of instantSearch's autocomplete mechanisms on submission of selected item
   @Input() public clearOnSubmit = false;
   // Selecting item emits the submit event with the item's value
