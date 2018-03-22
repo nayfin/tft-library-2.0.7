@@ -23,7 +23,6 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
 export class AutocompleteComponent extends BaseWidget {
 
   @Input() public placeholder = 'Type to search';
-  @Input() public selectTitle = 'SELECT';
   @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
   @Input() public algoliaAttribution = true;
 
@@ -45,14 +44,16 @@ export class AutocompleteComponent extends BaseWidget {
   **
   */
   @Input() public imageUrlParam = 'image';
+  // Text insid of select button
+  @Input() public selectTitle = 'SELECT';
   // Text insid of clear button
   @Input() public clearTitle = 'CLEAR';
   // Do you want to display clear button?
   @Input() public displayClearButton = true;
   // Do you want to display the select button. MAKE SURE selectToSubmit IS NOT SET TO FALSE!!
-  // @Input() public displaySelectButton = true;
+  @Input() public displaySelectButton = true;
   // Resets state of instantSearch's autocomplete mechanisms on submission of selected item
-  @Input() public clearOnSubmit = true;
+  @Input() public clearOnSubmit = false;
   // Selecting item emits the submit event with the item's value
   // @Input() public selectToSubmit = false;
 
@@ -105,12 +106,17 @@ export class AutocompleteComponent extends BaseWidget {
     const item = event.option.value;
     this.select.emit({ item } );
     this.selected = item;
+    // if ( this.selectToSubmit) {
+    //   this.handleSubmit();
+    // }
   }
 
-  public handleSubmit(mouseEvent: MouseEvent | KeyboardEvent) {
+  public handleSubmit(event: MouseEvent | KeyboardEvent) {
     // send submit event to parent component with selected item
-    event.preventDefault();
-    this.submit.emit({ mouseEvent, item : this.selected } );
+    if ( event ) {
+      event.preventDefault();
+    }
+    this.submit.emit({ event, item : this.selected } );
     if ( this.clearOnSubmit ) {
       this.clearValue();
     }

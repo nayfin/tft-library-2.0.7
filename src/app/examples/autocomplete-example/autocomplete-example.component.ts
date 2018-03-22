@@ -16,7 +16,7 @@ export class AutocompleteExampleComponent implements OnInit {
   };
   // TODO: reconfigure as Observable;
   item: any = null;
-  
+
   filterCategory = 'brand';
   constructor() { }
 
@@ -24,7 +24,12 @@ export class AutocompleteExampleComponent implements OnInit {
   }
 
   // Item needs to be <any> here... I'm not being lazy
-  onItemSelected( item: any ) {
+  handleItemSelected( item: any ) {
+    this.item = item;
+    console.log('item', item);
+  }
+
+  handleItemSubmitted( item: any ) {
     this.item = item;
     console.log('item', item);
   }
