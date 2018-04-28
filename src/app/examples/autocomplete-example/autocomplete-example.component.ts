@@ -11,8 +11,7 @@ export class AutocompleteExampleComponent implements OnInit {
  searchConfig: InstantSearchConfig = {
     appId: 'latency',
     apiKey: '3d9875e51fbd20c7754e65422f7ce5e1',
-    indexName: 'bestbuy',
-    urlSync: false
+    indexName: 'bestbuy'
   };
   // TODO: reconfigure as Observable;
   item: any = null;

@@ -18,15 +18,15 @@ export interface InstantSearchConfig {
     apiKey: string
   ) => object;
   searchParameters?: object | void;
-  urlSync?:
-    | boolean
-    | {
-        mapping?: object;
-        threshold?: number;
-        trackedParameters?: string[];
-        useHash?: boolean;
-        getHistoryState?: () => object;
-      };
+  // urlSync?:
+  //   | boolean
+  //   | {
+  //       mapping?: object;
+  //       threshold?: number;
+  //       trackedParameters?: string[];
+  //       useHash?: boolean;
+  //       getHistoryState?: () => object;
+  //     };
 }
 
 export class InstantSearchInstance {
@@ -66,9 +66,9 @@ export class TftInstantSearchInstance {
     });
 
     // remove URLSync widget if on SSR
-    if (!isPlatformBrowser(this.platformId)) {
-      config.urlSync = false;
-    }
+    // if (!isPlatformBrowser(this.platformId)) {
+    //   config.urlSync = false;
+    // }
 
     // custom algolia client agent
     if (!config.createAlgoliaClient) {
