@@ -47,7 +47,6 @@
     "zone.js": "^0.8.26"
   },
   "dependencies": {
-    "@angular/animations": "6.0.2",
     "@angular/cdk": "^6.0.0",
     "@angular/common": "6.0.2",
     "@angular/compiler": "6.0.2",
