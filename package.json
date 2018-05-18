@@ -1,6 +1,6 @@
 {
   "name": "tft-library",
-  "version": "2.0.2",
+  "version": "2.0.1",
   "author": "Nathan Kern",
   "license": "MIT",
   "description": "Tortilla Flat Technologies component library",
@@ -45,6 +45,12 @@
     "querystring-es3": "^0.2.1",
     "rxjs": "^6.1.0",
     "zone.js": "^0.8.26"
+  },
+  "dependencies": {
+    "algoliasearch": "^3.24.11",
+    "algoliasearch-helper": "^2.24.0",
+    "instantsearch.js": "^2.5.0",
+    "lodash-es": "^4.17.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.3",
