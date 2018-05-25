@@ -37,7 +37,7 @@
     "algoliasearch-helper": "^2.24.0",
     "angularfire2": "^5.0.0-rc.6",
     "core-js": "^2.4.1",
-    "firebase": "^4.10.0",
+    "firebase": "^5.0.4",
     "hammerjs": "^2.0.8",
     "instantsearch.js": "^2.5.0",
     "lodash-es": "^4.17.5",

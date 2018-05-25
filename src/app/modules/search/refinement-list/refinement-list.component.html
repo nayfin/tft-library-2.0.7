@@ -11,7 +11,7 @@
         *ngFor="let chip of chips" 
         [selectable]="chipSelectable" 
         [removable]="areChipsRemovable" 
-        (remove)="removeChip(chip)">
+        (removed)="removeChip(chip)">
 				{{chip.label}}
 				<mat-icon 
           matChipRemove 
