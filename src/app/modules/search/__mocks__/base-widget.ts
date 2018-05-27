@@ -27,6 +27,7 @@ export class BaseWidget implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
     // nothind to do, test env
+    // this.widget.dispose({helper: null, state: this.state});
   }
 
   public updateState = (state, isFirstRendering): Promise<void> | void => {
