@@ -4,7 +4,8 @@ import {
   Output,
   EventEmitter,
   Inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  OnDestroy
 } from '@angular/core';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import { noop } from 'lodash-es';
@@ -20,7 +21,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss']
 })
-export class AutocompleteComponent extends BaseWidget {
+export class AutocompleteComponent extends BaseWidget implements OnDestroy {
 
   @Input() public placeholder = 'Type to search';
   @Input() public algoliaLogo = ALGOLIA_LOGO_URL;
@@ -94,7 +95,11 @@ export class AutocompleteComponent extends BaseWidget {
     });
 
   }
-
+  ngOnDestroy() {
+    // this.ngOnDestroy();
+    this.ngOnDestroy();
+    console.log('destroyed autocomplete widget');
+  }
   public handleChange( query: string ) {
     this.formContainer.setErrors({'valueSelected': false});
     this.state.refine(query);

@@ -8,7 +8,10 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { TftInstantSearchInstance, InstantSearchConfig } from './instantsearch-instance';
+import {
+  TftInstantSearchInstance,
+  InstantSearchConfig
+} from './instantsearch-instance';
 
 @Component({
   selector: 'tft-instantsearch',
