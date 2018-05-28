@@ -57,6 +57,7 @@ export class BaseWidget implements OnInit, OnDestroy {
   public ngOnDestroy() {
     if (isPlatformBrowser(this.plateformId)) {
       this.searchInstance.removeWidget(this.widget);
+      console.log('TftInstantSearchInstance Destroyed');
     }
   }
 

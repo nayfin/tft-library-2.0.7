@@ -97,7 +97,7 @@ export class AutocompleteComponent extends BaseWidget implements OnDestroy {
   }
   ngOnDestroy() {
     // this.ngOnDestroy();
-    this.ngOnDestroy();
+    // this.ngOnDestroy();
     console.log('destroyed autocomplete widget');
   }
   public handleChange( query: string ) {

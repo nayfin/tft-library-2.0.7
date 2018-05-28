@@ -50,6 +50,7 @@ export class FileUploadComponent implements OnInit {
     // Totally optional metadata
     const customMetadata = { app: 'My AngularFire-powered PWA!' };
 
+    const fileRef = this.storage.ref(path);
     // The main task
     this.task = this.storage.upload(path, file, { customMetadata });
 
@@ -58,7 +59,7 @@ export class FileUploadComponent implements OnInit {
     this.snapshot   = this.task.snapshotChanges();
 
     // The file's download URL
-    this.downloadURL = this.task.downloadURL();
+    this.downloadURL = fileRef.getDownloadURL();
   }
 
   // Determines if the upload task is active
